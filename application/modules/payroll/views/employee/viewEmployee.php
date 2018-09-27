@@ -8,6 +8,10 @@
 		    title="" data-original-title="Add New Employee" onclick="location.href='<?php echo site_url("payroll/addEmp"); ?>';">
                <a><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> New </a> 
 	    </button>
+      <button class="btn btn-success add-btn" data-toggle="tooltip" data-placement="bottom" 
+        title="" data-original-title="Upload Employee" onclick="location.href='<?php echo site_url("payroll/uplEmp"); ?>';">
+               <a><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Upload CSV</a> 
+      </button>
         </div>
         <div class="card-body">
           <div class="table-responsive">

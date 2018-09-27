@@ -54,7 +54,7 @@
 	               class="field-split align-left labelstyle">Account No.</label>
 
 	        <input type="text" name="pan_no" style="width:300px;display:inline;"
-	               class="field-style field-split align-left" value="<?php echo($data_dtls->pan_no);?>" >
+	               class="field-style field-split align-left" value="<?php echo($data_dtls->pan_no);?>">
 
 	        <input type="text" name="ac_no" style="width:300px;display:inline;margin-left:20px" 
 	               class="field-style field-split align-left" 
@@ -64,9 +64,12 @@
 		<li>
 	    	<select type="text" name="status" style="width:620px;" 
 	    		    class="field-style field-split align-left"> 
+	    		    <?php $status = $data_dtls->status_flag ?>
+
 	                <option value="1"<?php echo($data_dtls->status_flag==1)?"selected":""?>>Active</option>
 	                <option value="0"<?php echo($data_dtls->status_flag==0)?"selected":""?> >Retired/Resigned</option>
             </select> 
+
 	    </li>
 	    
 	    <li>
@@ -74,4 +77,15 @@
 	    </li>
     </ul>	 
 </form>
+
+<script>
+		$(document).ready(function(){
+			if(<?php echo $status ?> == 0){
+				$('input').prop("readonly",true);
+				$(':input[type="submit"]').prop('disabled', true);
+			}
+		});
+
+</script>		
+
 

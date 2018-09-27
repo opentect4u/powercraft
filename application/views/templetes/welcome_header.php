@@ -140,17 +140,19 @@
                     <span class="nav-link-text">User Master</span>
                   </a>
 		  <ul class="sidenav-second-level collapse" id="collapseComponents">
-		                <li>
-                      <a href="<?php echo site_url('payroll/department');?>">Department</a>
-		                </li>
+		                <!--<li>
+                      <a href="<?php //echo site_url('payroll/department');?>">Department</a>
+		                </li>-->
 
-		                <li>
-                      <a href="<?php echo site_url('payroll/designation');?>">Designation</a>
-		    </li>
-
-		    <li>
-			 <a href="<?php echo site_url('payroll/earningDeduction'); ?>">Earnings & Deductions </a>
-		    </li>		
+		                <!--<li>
+                      <a href="<?php //echo site_url('payroll/designation');?>">Designation</a>
+		                </li>-->
+                    <li>
+                      <a href="<?php echo site_url('payroll/employee');?>">Employee Details</a>
+                    </li>
+		                <!--<li>
+			               <a href="<?php echo site_url('payroll/earningDeduction'); ?>">Earnings & Deductions </a>
+		                </li>-->		
 	
                     <li>
                       <a href="<?php echo site_url('Admin/addProjectType');?>">Project Types</a>
@@ -163,11 +165,9 @@
                       <a href="<?php echo site_url('Admin/addPurpose');?>">Purpose</a>
                     </li>
                     <li>
-                      <a href="<?php echo site_url('Admin/addClaimHead');?>">Add Claim Head</a>
+                      <a href="<?php echo site_url('Admin/addClaimHead');?>">Claim Head</a>
                     </li>
-                    <li>
-                      <a href="<?php echo site_url('payroll/employee');?>">Employee Details</a>
-                    </li>
+                    
                     <li>
                       <a href="<?php echo site_url('Admin/userMaintenance');?>">User Maintenance</a>
                     </li>

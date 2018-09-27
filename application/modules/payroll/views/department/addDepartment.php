@@ -13,7 +13,6 @@
 	  <li> 
 	    <input type="text" name="dept" style="width:380px" class="field-style field-split align-left" placeholder="Department Name" required>
 	  </li>
-	  
 	  <li>
 	    <input class="btn btn-primary" title="Save" type="submit" name="submit" value="Save">
 	  </li>

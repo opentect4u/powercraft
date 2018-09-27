@@ -20,72 +20,20 @@
                                 return $dept->row();
 	       }
 
-	       public function edit_data($table_name, $data_array, $where) {			/*Update Row*/
+	       public function edit_data($table_name, $data_array, $where) {	/*Update Row*/
 			$this->db->where($where);
 			$this->db->update($table_name, $data_array);
 			return;
 
-		}
-
-
-											       /*Insert New Department In mm_department table*/      
-			public function insert_dept($data){
-				$time    = date("Y-m-d h:i:s");
-				$user_id = $this->session->userdata('loggedin')->user_id;
-				$value   = array('department'=>$data,
-			                     'created_by'=>$user_id,
-			       	             'created_dt'=>$time);
-			    $this->db->insert('mm_department',$value);
-			    return;
 			}
-											      /*Select a particular value with sl no */
+
+										      							/*Select a particular value with sl no */
 			public function select_row($table_name,$data){
 				$this->db->select('*');
 				$this->db->where('sl_no',$data);
 				$dept=$this->db->get($table_name);
 				return $dept->row();
 			}
-											      /*Modify Department Name*/
-		    public function update_dept($sl_no,$data){
-		    	$user_id = $this->session->userdata('loggedin')->user_id;
-		    	$time = date("Y-m-d h:i:s");
-		    	$this->db->query('update mm_department set department ='."'".$data."'".
-		    		                                       ',modified_by ='."'".$user_id."'".
-		    		                                       ',modified_dt ='."'".$time."'".
-														   ' where sl_no='.$sl_no);
-		    		return;
-		    }
-
-		    									   /*Insert New Designation In mm_designation table*/      
-			public function insert_desig($data){
-				$time    = date("Y-m-d h:i:s");
-				$user_id = $this->session->userdata('loggedin')->user_id;
-				$value   = array('designation'=>$data,
-			                     'created_by'=>$user_id,
-			       	             'created_dt'=>$time);
-			    $this->db->insert('mm_designation',$value);
-			    return;
-			}
-
-											/*Modify Designation Name*/
-		    public function update_desig($sl_no,$data){
-		    	$user_id = $this->session->userdata('loggedin')->user_id;
-		    	$time = date("Y-m-d h:i:s");
-		    	$this->db->query('update mm_designation set designation ='."'".$data."'".
-		    		                                       ',modified_by ='."'".$user_id."'".
-		    		                                       ',modified_dt ='."'".$time."'".
-														   ' where sl_no='.$sl_no);
-		    	return;
-		    }
+			
  
-		     public function insert_emp($data){
-                                $time    = date("Y-m-d h:i:s");
-                                $user_id = $this->session->userdata('loggedin')->user_id;
-                                $value   = array('department'=>$data,
-                                                 'created_by'=>$user_id,
-                                                 'created_dt'=>$time);
-                            $this->db->insert('mm_department',$value);
-                            return;
-                        }
-			 
 	}

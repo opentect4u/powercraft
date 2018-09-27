@@ -7,6 +7,7 @@ class Process extends CI_Model {
 	{ 
 		$this->db->select('password');
 		$this->db->where('user_id',$user_id);
+		$this->db->where('user_flag','Y');
 
 		$row = $this->db->get('m_user_master');
 		if($row->num_rows() == 1)

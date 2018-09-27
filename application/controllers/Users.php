@@ -29,7 +29,7 @@ class Users extends CI_Controller {
 				$user_data = $this->Process->get_value($user_id);
 //	Set Session Value for tm_audit_trail
 				$this->session->set_userdata('loggedin',$user_data);
-				var_dump($this->session->userdata('loggedin'));
+				//var_dump($this->session->userdata('loggedin'));
 				$this->Process->f_audit_trail_login($user_id);
 
 				$sl_no = $this->Process->f_audit_trail_value($user_id);

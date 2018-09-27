@@ -7,46 +7,35 @@
 	      class="form-style-9" method="POST" action="<?php echo site_url('payroll/addEmp'); ?>">
       <ul>
 	 <li>
-	    <input type="text" name="emp_no" style="width:350px;display:inline" class="field-style field-split align-left" 
-		   placeholder="Employee No." required>
+	    <input type="text" name="emp_no" style="width:350px;display:inline" class="field-style field-split align-left" placeholder="Employee No." required>
 	 
 	    <input type="text" name="emp_name" style="width:350px;display:inline;margin-left:20px" class="field-style field-split align-left" 
 		   placeholder="Name" required>
 	 </li>
 	 <li>
-	    <select type="text" name="emp_dept" style="width:350px;display:inline" class="field-style field-split align-left custom-select">
-		   	<option value="0">Select</option>
- 		 	<?php
- 		 		foreach ($dept as $value) {?>
- 		 			<option value="<?php echo $value->sl_no;?>"><?php echo $value->department;?></option>
- 		 	<?php  
- 		 	    }
- 		 	?>
-	    </select>
+	    <input type="text" name="emp_dept" style="width:350px;display:inline" class="field-style field-split align-left" placeholder="Department">
+		   	 
 
-	    <select type="text" name="emp_desg" style="width:350px;display:inline;margin-left:16px;" class="field-style field-split align-left custom-select">
-		   	<option value="0">Select</option>
-		   	<?php
- 		 		foreach ($desg as $value) {?>
- 		 			<option value="<?php echo $value->designation;?>"><?php echo $value->designation;?>
- 		 		    </option>
- 		 	<?php  
- 		 	    }
- 		 	?>
-		</select>   
+	    <input type="text" name="emp_desg" style="width:350px;display:inline;margin-left:20px;" class="field-style field-split align-left" placeholder="Designation">
 	 </li>
 
 	  <li>
-	    <input type="text" name="doj" id="dp1" style="width:350px" class="field-style field-split align-left"  placeholder="Joining Date">
+	    <input type="text" name="doj" id="dp1" style="width:350px" class="field-style field-split align-left"  placeholder="Joining Date" required>
 		<i class="fa fa-calendar"></i>
 		
 	 </li>
 	 <li>
 	    <input type="text" name="pan_no" style="width:350px;display:inline" class="field-style field-split align-left" 
-		   placeholder="PAN No.">
+		   placeholder="PAN No." required>
 	
 	    <input type="text" name="ac_no" style="width:350px;display:inline;margin-left:20px" class="field-style field-split align-left" 
 		   placeholder="Account No.">	       
+	</li>	 
+	<li>
+	    <input type="text" name="pf_no" style="width:350px;display:inline" class="field-style field-split align-left" placeholder="PF No.">
+	
+	    <input type="text" name="esi_no" style="width:350px;display:inline;margin-left:20px" class="field-style field-split align-left" 
+		   placeholder="ESI No.">	       
 	</li>	 
 	<br>
 	 <li>

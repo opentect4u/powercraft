@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 25, 2018 at 06:47 PM
--- Server version: 5.7.23-0ubuntu0.18.04.1
--- PHP Version: 7.2.10-0ubuntu0.18.04.1
+-- Generation Time: Sep 14, 2018 at 03:49 AM
+-- Server version: 5.6.37
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `claim`
+-- Database: `synergic_claim_demo`
 --
 
 -- --------------------------------------------------------
@@ -109,21 +111,6 @@ CREATE TABLE `mm_department` (
   `modified_dt` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mm_department`
---
-
-INSERT INTO `mm_department` (`sl_no`, `department`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(2, 'r23r23r23r', NULL, NULL, NULL, NULL),
-(1, 'csdfsdvsdv', NULL, NULL, NULL, NULL),
-(3, '457poiyy', '32', '2018-09-20 01:16:10', NULL, NULL),
-(4, 'ascasc', '32', '2018-09-20 01:18:44', NULL, NULL),
-(5, 'sac', '32', '2018-09-20 01:20:41', NULL, NULL),
-(6, 'bdfbsnsd', '32', '2018-09-20 01:20:57', NULL, NULL),
-(7, 'cdqw33', '32', '2018-09-20 01:24:10', NULL, NULL),
-(8, 'ssqa', '32', '2018-09-20 02:11:39', NULL, NULL),
-(9, 'Technical', '32', '2018-09-20 04:24:49', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -139,37 +126,6 @@ CREATE TABLE `mm_designation` (
   `modified_dt` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mm_designation`
---
-
-INSERT INTO `mm_designation` (`sl_no`, `designation`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Software Engineer', '32', '2018-09-25 05:08:50', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mm_earning_deduction`
---
-
-CREATE TABLE `mm_earning_deduction` (
-  `sl_no` int(10) NOT NULL,
-  `ed_type` varchar(5) NOT NULL,
-  `ed_desc` varchar(100) NOT NULL,
-  `created_by` varchar(50) DEFAULT NULL,
-  `created_dt` datetime DEFAULT NULL,
-  `modified_by` varchar(50) DEFAULT NULL,
-  `modified_dt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mm_earning_deduction`
---
-
-INSERT INTO `mm_earning_deduction` (`sl_no`, `ed_type`, `ed_desc`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'D', 'Basic', NULL, NULL, '32', '2018-09-25 12:47:59'),
-(2, 'D', 'I/Tax', NULL, NULL, '32', '2018-09-25 12:48:12');
-
 -- --------------------------------------------------------
 
 --
@@ -179,7 +135,7 @@ INSERT INTO `mm_earning_deduction` (`sl_no`, `ed_type`, `ed_desc`, `created_by`,
 CREATE TABLE `mm_employee` (
   `emp_no` int(11) NOT NULL,
   `emp_name` varchar(100) NOT NULL,
-  `emp_catg` int(10) DEFAULT '0',
+  `emp_catg` int(10) DEFAULT NULL,
   `designation` varchar(50) NOT NULL,
   `sector` varchar(50) DEFAULT NULL,
   `date_of_joining` date DEFAULT NULL,
@@ -198,52 +154,51 @@ CREATE TABLE `mm_employee` (
 --
 
 INSERT INTO `mm_employee` (`emp_no`, `emp_name`, `emp_catg`, `designation`, `sector`, `date_of_joining`, `status_flag`, `date_of_termination`, `pan_no`, `bank_ac_no`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'Aritra  Basu Roy Chowdhury', 0, 'Director', 'Administration', '2010-10-01', 0, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:05:33'),
-(3, 'Debasish Adhikary', 0, 'Director', 'Administration', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:05:07'),
-(12, 'Sukanta Roy', 0, 'CTO', 'Software Technical', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:10:49'),
-(15, 'Nilkantha  Das', 0, 'General Manager', 'Software Technical', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:43'),
-(19, 'Amit Kr Singh', 0, 'Purchase Manager', 'Production', '2017-09-05', 0, '2018-09-25', '', '', 'Pritam Maity', '2018-04-13 00:00:00', '32', '2018-09-25 06:44:46'),
-(30, 'Subhodip Banerjee', 0, 'Team Leader', 'Sales and Marketing', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:12:00'),
-(32, 'Tanmoy Mondal', 0, 'Project Manager', 'Software Technical', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:12:14'),
-(36, 'Sanjoy Sardar', 0, 'Office Staff', 'Others', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:31:42'),
-(38, 'Raja Saha', 0, 'Senior Software Endd', 'Technical', '1970-12-25', 1, NULL, 'nfgnf', '', '32', '2018-09-24 06:58:25', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:13:21'),
-(41, 'Tulu Rana', 0, 'Office Staff', 'Others', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:32:05'),
-(49, 'Arfibillah Mondal', 0, 'Marketing Executive', 'Sales and Marketing', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:14:27'),
-(50, 'Somnath Chakraborty', 0, 'Software Engineer', 'Software Technical', '2011-09-19', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:14:52'),
-(51, 'Kalyan Dutta', 0, 'Software Engineer', 'Software Technical', '2011-09-19', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:15:16'),
-(53, 'Joydeep Ghosh', 0, 'Senior Software Engineer', 'Software Technical', '2012-01-09', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:15:39'),
-(55, 'Nabin Halder', 0, 'Office Staff', 'Others', '1970-01-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:32:32'),
-(57, 'Rakesh Kumar Singh', 0, 'Service Engineer', 'Hardware Technical', '2012-11-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:18:05'),
-(66, 'Arghya Mondal', 0, 'Marketing Executive', 'Sales and Marketing', '2013-10-21', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:18:46'),
-(70, 'Sujit Paul', 0, 'Senior Accountant', 'Accounts', '2014-04-16', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:19:17'),
-(72, 'Sourav Kumar Ghorai', 0, 'Software Engineer', 'Software Technical', '2014-06-16', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:01'),
-(73, 'Sushil Kumar Prajapati', 0, 'Software Engineer', 'Software Technical', '2014-06-16', 0, '2018-09-09', '', '', 'Pritam Maity', '2018-04-13 00:00:00', '32', '2018-09-25 06:07:49'),
-(74, 'Upendar Singh', 0, 'Office Staff', 'Production', '2014-07-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:47'),
-(77, 'Suvendu Rakshit', 0, 'Marketing Executive', 'Sales and Marketing', '2015-02-23', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:34:35'),
-(78, 'Chandan Das', 0, 'Software Engineer', 'Software Technical', '2015-03-09', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:35:11'),
-(79, 'Saurav Manna', 0, 'Data Entry Operator', 'Software Technical', '2015-05-18', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Tanmoy Mondal', '2018-05-02 18:31:13'),
-(80, 'Amit Kumar Datta', 0, 'Service Engineer', 'Hardware Technical', '2015-06-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:36:10'),
-(82, 'Subhajit Sani', 0, 'Data Entry Operator', 'Software Technical', '2015-06-15', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:36:46'),
-(84, 'Sanjoy Prasad', 0, 'Service Engineer', 'Hardware Technical', '2015-10-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:37:35'),
-(86, 'Amitava Das', 0, 'Bussiness Developement Executive', 'Sales and Marketing', '2015-11-01', 1, NULL, '', '', 'Pritam Maity', '2018-04-13 00:00:00', '32', '2018-09-24 07:02:26'),
-(87, 'Chandan Chakraborty', 0, 'Data Entry Operator', 'Software Technical', '2016-05-09', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:14'),
-(90, 'Suparsha Das', 0, 'Software Engineer', 'Software Technical', '2016-07-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:27'),
-(93, 'Moumita Makal', 0, 'Telecaller', 'Software Technical', '2016-07-25', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:40'),
-(114, 'Saurav Dutta', 0, 'Service Engineer', 'Sales and Marketing', '2018-04-01', 1, NULL, NULL, NULL, 'Tanmoy Mondal', '2018-05-02 14:45:53', 'Amit Kumar Singh', '2018-05-02 16:53:23'),
-(115, 'BAPPA MONDAL', 0, 'Service Engineer', 'Hardware Technical', '2018-04-15', 1, NULL, NULL, NULL, 'Tanmoy Mondal', '2018-05-02 14:44:33', NULL, NULL),
-(100, 'Rajiv Sharma', 0, 'Software Engineer', 'Software Technical', '2017-02-04', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:00'),
-(101, 'Arunangshu Pal', 0, 'Software Engineer', 'Software Technical', '2017-02-07', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:23'),
-(102, 'Souparna Bosu', 0, 'Software Engineer', 'Software Technical', '2017-04-04', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:27'),
-(104, 'Bitan Koley', 0, 'Data Entry Operator', 'Software Technical', '2017-06-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:53'),
-(105, 'Pritam Kumar Maity', 0, 'Software Engineer', 'Software Technical', '2017-06-19', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:42:33'),
-(107, 'Tapomoy Mahapatra', 0, 'Software Engineer', 'Software Technical', '2017-07-03', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:42:50'),
-(108, 'Bappa Das', 0, 'Marketing Executive', 'Sales and Marketing', '2017-07-24', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:43:35'),
-(109, 'Rejabul Islam Nayak', 0, 'Data Entry Operator', 'Software Technical', '2017-09-08', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:43:49'),
-(110, 'Atin Chatterjee', 0, 'Software Engineer', 'Software Technical', '2017-09-11', 1, NULL, '', 'dascasca', 'Pritam Maity', '2018-04-13 00:00:00', '32', '2018-09-24 07:08:51'),
-(111, 'Soumen Nath', 0, 'Marketing Executive', 'Sales and Marketing', '2017-10-16', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:35'),
-(112, 'Debdas Sardar', 0, 'Service Engineer', 'Hardware Technical', '2017-11-01', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:49'),
-(113, 'Sandip Kr Mahato', 0, 'Data Entry Operator', 'Sales and Marketing', '2018-01-02', 1, NULL, NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:05'),
-(200, 'Pritam Kumar', 0, 'Engineer', 'Technical', '2018-09-01', 1, NULL, 'ATGPM8526N', '00874569633', '32', '2018-09-24 03:56:19', NULL, NULL);
+(1, 'Aritra  Basu Roy Chowdhury', 0, 'Director', 'Administration', '2010-10-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:05:33'),
+(3, 'Debasish Adhikary', 0, 'Director', 'Administration', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:05:07'),
+(12, 'Sukanta Roy', 0, 'CTO', 'Software Technical', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:10:49'),
+(15, 'Nilkantha  Das', 0, 'General Manager', 'Software Technical', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:43'),
+(19, 'Amit Kr Singh', 0, 'Purchase Manager', 'Production', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:11:39'),
+(30, 'Subhodip Banerjee', 0, 'Team Leader', 'Sales and Marketing', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:12:00'),
+(32, 'Tanmoy Mondal', 0, 'Project Manager', 'Software Technical', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:12:14'),
+(36, 'Sanjoy Sardar', 0, 'Office Staff', 'Others', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:31:42'),
+(38, 'Raja Saha', 0, 'Senior Software Engineer', 'Software Technical', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:13:21'),
+(41, 'Tulu Rana', 0, 'Office Staff', 'Others', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:32:05'),
+(49, 'Arfibillah Mondal', 0, 'Marketing Executive', 'Sales and Marketing', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:14:27'),
+(50, 'Somnath Chakraborty', 0, 'Software Engineer', 'Software Technical', '2011-09-19', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:14:52'),
+(51, 'Kalyan Dutta', 0, 'Software Engineer', 'Software Technical', '2011-09-19', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:15:16'),
+(53, 'Joydeep Ghosh', 0, 'Senior Software Engineer', 'Software Technical', '2012-01-09', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:15:39'),
+(55, 'Nabin Halder', 0, 'Office Staff', 'Others', '1970-01-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:32:32'),
+(57, 'Rakesh Kumar Singh', 0, 'Service Engineer', 'Hardware Technical', '2012-11-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:18:05'),
+(66, 'Arghya Mondal', 0, 'Marketing Executive', 'Sales and Marketing', '2013-10-21', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:18:46'),
+(70, 'Sujit Paul', 0, 'Senior Accountant', 'Accounts', '2014-04-16', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:19:17'),
+(72, 'Sourav Kumar Ghorai', 0, 'Software Engineer', 'Software Technical', '2014-06-16', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:01'),
+(73, 'Sushil Kumar Prajapati', 0, 'Software Engineer', 'Software Technical', '2014-06-16', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:15'),
+(74, 'Upendar Singh', 0, 'Office Staff', 'Production', '2014-07-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:33:47'),
+(77, 'Suvendu Rakshit', 0, 'Marketing Executive', 'Sales and Marketing', '2015-02-23', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:34:35'),
+(78, 'Chandan Das', 0, 'Software Engineer', 'Software Technical', '2015-03-09', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:35:11'),
+(79, 'Saurav Manna', 0, 'Data Entry Operator', 'Software Technical', '2015-05-18', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Tanmoy Mondal', '2018-05-02 18:31:13'),
+(80, 'Amit Kumar Datta', 0, 'Service Engineer', 'Hardware Technical', '2015-06-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:36:10'),
+(82, 'Subhajit Sani', 0, 'Data Entry Operator', 'Software Technical', '2015-06-15', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:36:46'),
+(84, 'Sanjoy Prasad', 0, 'Service Engineer', 'Hardware Technical', '2015-10-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:37:35'),
+(86, 'Amitava Das', 0, 'Marketing Executive', 'Sales and Marketing', '2015-11-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:38:49'),
+(87, 'Chandan Chakraborty', 0, 'Data Entry Operator', 'Software Technical', '2016-05-09', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:14'),
+(90, 'Suparsha Das', 0, 'Software Engineer', 'Software Technical', '2016-07-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:27'),
+(93, 'Moumita Makal', 0, 'Telecaller', 'Software Technical', '2016-07-25', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:39:40'),
+(114, 'Saurav Dutta', 0, 'Service Engineer', 'Sales and Marketing', '2018-04-01', 1, '0000-00-00', NULL, NULL, 'Tanmoy Mondal', '2018-05-02 14:45:53', 'Amit Kumar Singh', '2018-05-02 16:53:23'),
+(115, 'BAPPA MONDAL', 0, 'Service Engineer', 'Hardware Technical', '2018-04-15', 1, '0000-00-00', NULL, NULL, 'Tanmoy Mondal', '2018-05-02 14:44:33', NULL, NULL),
+(100, 'Rajiv Sharma', 0, 'Software Engineer', 'Software Technical', '2017-02-04', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:00'),
+(101, 'Arunangshu Pal', 0, 'Software Engineer', 'Software Technical', '2017-02-07', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:23'),
+(102, 'Souparna Bosu', 0, 'Software Engineer', 'Software Technical', '2017-04-04', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:27'),
+(104, 'Bitan Koley', 0, 'Data Entry Operator', 'Software Technical', '2017-06-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:53'),
+(105, 'Pritam Kumar Maity', 0, 'Software Engineer', 'Software Technical', '2017-06-19', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:42:33'),
+(107, 'Tapomoy Mahapatra', 0, 'Software Engineer', 'Software Technical', '2017-07-03', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:42:50'),
+(108, 'Bappa Das', 0, 'Marketing Executive', 'Sales and Marketing', '2017-07-24', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:43:35'),
+(109, 'Rejabul Islam Nayak', 0, 'Data Entry Operator', 'Software Technical', '2017-09-08', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:43:49'),
+(110, 'Atin Chatterjee', 0, 'Software Engineer', 'Software Technical', '2017-09-11', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:44:02'),
+(111, 'Soumen Nath', 0, 'Marketing Executive', 'Sales and Marketing', '2017-10-16', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:35'),
+(112, 'Debdas Sardar', 0, 'Service Engineer', 'Hardware Technical', '2017-11-01', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:40:49'),
+(113, 'Sandip Kr Mahato', 0, 'Data Entry Operator', 'Sales and Marketing', '2018-01-02', 1, '0000-00-00', NULL, NULL, 'Pritam Maity', '2018-04-13 00:00:00', 'Aritra  Basu Roy Chowdhury', '2018-05-02 12:41:05');
 
 -- --------------------------------------------------------
 
@@ -721,7 +676,7 @@ CREATE TABLE `mm_project_type` (
 --
 
 INSERT INTO `mm_project_type` (`id`, `type_cd`, `type_desc`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 1, 'PACS ', 'Aritra  Basu Roy Chowdhury', '2018-04-24 18:04:08', 'Tanmoy Mondal', '2018-09-14 15:36:05'),
+(1, 1, 'PACS', 'Aritra  Basu Roy Chowdhury', '2018-04-24 18:04:08', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:40:10'),
 (2, 2, 'CCS', 'Aritra  Basu Roy Chowdhury', '2018-05-02 11:29:44', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:41:27'),
 (3, 3, 'ECCS', 'Aritra  Basu Roy Chowdhury', '2018-05-02 11:50:01', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:41:35'),
 (4, 4, 'UCB', 'Aritra  Basu Roy Chowdhury', '2018-05-02 11:50:45', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:41:43'),
@@ -737,9 +692,7 @@ INSERT INTO `mm_project_type` (`id`, `type_cd`, `type_desc`, `created_by`, `crea
 (14, 14, 'CCB', 'Aritra  Basu Roy Chowdhury', '2018-05-02 11:58:36', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:42:36'),
 (15, 15, 'MARKETTING SOC', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:43:06', NULL, NULL),
 (16, 16, 'Institution', 'Aritra  Basu Roy Chowdhury', '2018-05-02 15:43:22', NULL, NULL),
-(17, 17, 'OTHERS', 'Nilkantha  Das', '2018-07-12 19:18:19', NULL, NULL),
-(18, 18, 'casc', 'Tanmoy Mondal', '2018-09-14 15:36:52', NULL, NULL),
-(19, 19, 'jyj', 'Tanmoy Mondal', '2018-09-20 11:36:46', NULL, NULL);
+(17, 17, 'OTHERS', 'Nilkantha  Das', '2018-07-12 19:18:19', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1978,21 +1931,7 @@ INSERT INTO `tm_audit_trail` (`sl_no`, `login_dt`, `user_id`, `terminal_name`, `
 (1048, '2018-09-14 13:49:45pm', '32', 's104-238-116-98.secureserver.net', '2018-09-14 13:51:27pm'),
 (1049, '2018-09-14 14:19:52pm', '105', 's104-238-116-98.secureserver.net', ''),
 (1050, '2018-09-14 14:30:11pm', '32', 's104-238-116-98.secureserver.net', '2018-09-14 14:50:35pm'),
-(1051, '2018-09-14 14:52:08pm', '32', 's104-238-116-98.secureserver.net', '2018-09-14 14:58:00pm'),
-(1052, '2018-09-14 15:24:27pm', '32', 'Tanmoy', '2018-09-14 18:51:12pm'),
-(1053, '2018-09-17 11:35:40am', '32', 'Tanmoy', '2018-09-17 15:03:52pm'),
-(1054, '2018-09-17 15:03:57pm', '32', 'Tanmoy', ''),
-(1055, '2018-09-18 11:03:23am', '32', 'Tanmoy', '2018-09-18 11:29:35am'),
-(1056, '2018-09-18 11:29:38am', '32', 'Tanmoy', '2018-09-18 13:37:02pm'),
-(1057, '2018-09-18 16:24:41pm', '32', 'Tanmoy', '2018-09-18 16:27:47pm'),
-(1058, '2018-09-19 17:43:12pm', '32', 'Tanmoy', '2018-09-19 18:53:41pm'),
-(1059, '2018-09-20 11:11:20am', '32', 'Tanmoy', '2018-09-20 15:04:00pm'),
-(1060, '2018-09-20 15:04:10pm', '32', 'Tanmoy', '2018-09-20 18:40:25pm'),
-(1061, '2018-09-24 10:35:52am', '32', 'Tanmoy', '2018-09-24 10:36:13am'),
-(1062, '2018-09-24 10:41:34am', '32', 'Tanmoy', '2018-09-24 10:42:11am'),
-(1063, '2018-09-24 11:43:01am', '32', 'Tanmoy', '2018-09-24 19:09:19pm'),
-(1064, '2018-09-25 11:13:48am', '32', 'Tanmoy', '2018-09-25 14:06:15pm'),
-(1065, '2018-09-25 15:37:18pm', '32', 'Tanmoy', '2018-09-25 18:46:20pm');
+(1051, '2018-09-14 14:52:08pm', '32', 's104-238-116-98.secureserver.net', '2018-09-14 14:58:00pm');
 
 -- --------------------------------------------------------
 
@@ -2456,7 +2395,7 @@ INSERT INTO `tm_claim` (`claim_cd`, `emp_no`, `claim_dt`, `project_type`, `proje
 (2018166, 74, '2018-06-27', '', 'Others', 'Delivery Charges', '2018-06-27', '2018-06-27', 'bagnan- 1 mahila co-op paper roll 5100', '2733.00', 1, 'Sujit Paul', '2018-07-06 13:32:00', 0, NULL, NULL, NULL, 'Upendar Singh', '2018-06-27 16:30:23pm', 'Upendar Singh', '2018-06-27 18:50:22pm'),
 (2018167, 19, '2018-06-27', '', 'Others', 'Local Conveyance', '2018-06-26', '2018-06-27', 'south city, goriahat', '60.00', 1, 'Aritra  Basu Roy Chowdhury', '2018-07-06 14:42:47', 0, NULL, NULL, NULL, 'Amit Kumar Singh', '2018-06-27 17:24:43pm', '', ''),
 (2018168, 36, '2018-06-27', '', 'Others', 'Office Maintenance', '2018-06-27', '2018-06-27', 'sugar 4kg\r\nmilk 2kg', '938.00', 1, 'Sujit Paul', '2018-07-06 14:49:06', 0, NULL, NULL, NULL, 'Sanjoy Sardar', '2018-06-27 17:54:10pm', '', ''),
-(2018169, 110, '2018-06-28', '', 'Others', 'Web Hosting & Other Related Charges', '2018-06-18', '2018-06-22', 'smruti one branch online and other branch web hosting', '8018.00', 1, 'Sukanta Roy', '2018-07-06 00:00:00', 0, NULL, NULL, NULL, 'Atin Chatterjee', '2018-06-28 10:27:43am', '', ''),
+(2018169, 110, '2018-06-28', '', 'Others', 'Web Hosting & Other Related Charges', '2018-06-18', '2018-06-22', 'smruti one branch online and other branch web hosting', '8018.00', 1, 'Sukanta Roy', '2018-07-06 16:08:36', 0, NULL, NULL, NULL, 'Atin Chatterjee', '2018-06-28 10:27:43am', '', ''),
 (2018170, 73, '2018-06-28', '', 'Others', 'Tours & Travels - Execution', '2018-06-19', '2018-06-19', 'SUPPORT AT HIGHCOURT', '117.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Sushil Prajapati', '2018-06-28 17:07:31pm', '', ''),
 (2018171, 73, '2018-06-28', '', 'Others', 'Tours & Travels - Execution', '2018-06-20', '2018-06-20', 'SUPPORT AT HIGH COURT', '124.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Sushil Prajapati', '2018-06-28 17:09:33pm', '', ''),
 (2018172, 104, '2018-06-28', '', 'Others', 'Tours & Travels - Execution', '2018-06-14', '2018-06-27', 'GOPE GANTER (DATA ENTRY)', '376.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Bitan Koley', '2018-06-28 17:23:33pm', '', ''),
@@ -2476,7 +2415,7 @@ INSERT INTO `tm_claim` (`claim_cd`, `emp_no`, `claim_dt`, `project_type`, `proje
 (2018186, 55, '2018-07-02', '', 'Others', 'Lunch Subsidy', '2018-06-30', '2018-06-30', 'fish meal ', '50.00', 1, 'Sujit Paul', '2018-07-06 13:39:09', 0, NULL, NULL, NULL, 'Nabin Halder', '2018-07-02 12:03:09pm', '', ''),
 (2018187, 36, '2018-07-02', '', 'Others', 'Postage & Telegraphs', '2018-06-29', '2018-06-29', 'DHUBRIN 3PIC DDS', '1115.00', 1, 'Sujit Paul', '2018-07-06 13:40:38', 0, NULL, NULL, NULL, 'Sanjoy Sardar', '2018-07-02 18:20:20pm', '', ''),
 (2018188, 36, '2018-07-02', '', 'Others', 'Lunch Subsidy', '2018-07-02', '2018-07-02', 'MIO AMORE', '46.00', 1, 'Sujit Paul', '2018-07-06 13:41:19', 0, NULL, NULL, NULL, 'Sanjoy Sardar', '2018-07-02 18:22:08pm', '', ''),
-(2018189, 78, '2018-07-02', 'ARDB', 'BARDHAMAN ARDB', 'Tours & Travels - Execution', '2018-06-25', '2018-06-30', 'CBS at Bardhaman ARDB & Branches', '2260.00', 1, 'Sukanta Roy', '2018-07-06 00:00:00', 0, NULL, NULL, NULL, 'Chandan Das', '2018-07-02 18:42:17pm', 'Chandan Das', '2018-07-06 16:11:38pm');
+(2018189, 78, '2018-07-02', 'ARDB', 'BARDHAMAN ARDB', 'Tours & Travels - Execution', '2018-06-25', '2018-06-30', 'CBS at Bardhaman ARDB & Branches', '2260.00', 1, 'Sukanta Roy', '2018-07-06 16:29:29', 0, NULL, NULL, NULL, 'Chandan Das', '2018-07-02 18:42:17pm', 'Chandan Das', '2018-07-06 16:11:38pm');
 INSERT INTO `tm_claim` (`claim_cd`, `emp_no`, `claim_dt`, `project_type`, `project_name`, `purpose`, `from_dt`, `to_dt`, `narration`, `amount`, `approval_status`, `approved_by`, `approval_dt`, `rejection_status`, `rejection_remarks`, `rejected_by`, `rejected_dt`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
 (2018190, 38, '2018-07-03', 'PACS', 'SRIDHARPUR MEMARY BR', 'Tours & Travels - Execution', '2018-06-27', '2018-07-02', 'Tour to scb for trading ', '200.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Raja Saha', '2018-07-03 13:44:34pm', '', ''),
 (2018191, 12, '2018-07-03', '', 'Others', 'Electricity Charges', '2018-07-03', '2018-07-03', 'Office Electricity bills', '19230.00', 1, 'Aritra  Basu Roy Chowdhury', '2018-07-06 14:39:48', 0, NULL, NULL, NULL, 'Sukanta Roy', '2018-07-03 13:45:16pm', 'Sukanta Roy', '2018-07-03 13:47:12pm'),
@@ -2508,7 +2447,7 @@ INSERT INTO `tm_claim` (`claim_cd`, `emp_no`, `claim_dt`, `project_type`, `proje
 (2018217, 36, '2018-07-06', '', 'Others', 'Office Maintenance', '2018-07-05', '2018-07-05', 'Paid For Office Maintenance', '2150.00', 1, 'Sujit Paul', '2018-07-06 13:07:24', 0, NULL, NULL, NULL, 'Sanjoy Sardar', '2018-07-06 12:41:39pm', '', ''),
 (2018218, 19, '2018-07-06', '', 'Others For Marketing', 'Tours & Travels - Marketing', '2018-07-05', '2018-07-05', 'DPCA', '1906.00', 1, 'Aritra  Basu Roy Chowdhury', '2018-07-06 14:47:44', 0, NULL, NULL, NULL, 'Amit Kumar Singh', '2018-07-06 12:44:46pm', '', ''),
 (2018219, 3, '2018-07-06', '', 'Others For Marketing', 'Tours & Travels - Marketing', '2018-07-05', '2018-07-05', 'WBSCB and others', '335.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Debasish Adhikary', '2018-07-06 15:10:07pm', '', ''),
-(2018220, 100, '2018-07-06', '', 'Others', 'Tours & Travels - Execution', '2018-07-03', '2018-07-04', 'Software installation and training at Jhamtia and Chitanan SKUS', '696.00', 1, 'Sukanta Roy', '2018-07-06 00:00:00', 0, NULL, NULL, NULL, 'Rajiv Sharma', '2018-07-06 15:38:23pm', '', ''),
+(2018220, 100, '2018-07-06', '', 'Others', 'Tours & Travels - Execution', '2018-07-03', '2018-07-04', 'Software installation and training at Jhamtia and Chitanan SKUS', '696.00', 1, 'Sukanta Roy', '2018-07-06 15:59:02', 0, NULL, NULL, NULL, 'Rajiv Sharma', '2018-07-06 15:38:23pm', '', ''),
 (2018221, 36, '2018-07-06', '', 'Others', 'Lunch Subsidy', '2018-07-06', '2018-07-06', 'D.A., ABRC\r\nMIO AMORE', '128.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Sanjoy Sardar', '2018-07-06 16:32:42pm', '', ''),
 (2018222, 110, '2018-07-06', '', 'Others', 'Tours & Travels - Execution', '2018-07-05', '2018-07-05', 'Backlog trainning of nadia ardb and s/w installation.', '250.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Atin Chatterjee', '2018-07-06 16:47:55pm', '', ''),
 (2018223, 84, '2018-07-06', '', 'Others', 'Tours & Travels - Execution', '2018-07-03', '2018-07-03', 'SETT SERVICE STATION', '163.00', 0, '', '0000-00-00 00:00:00', 0, NULL, NULL, NULL, 'Sanjoy Prasad', '2018-07-06 16:48:38pm', '', ''),
@@ -3613,7 +3552,7 @@ INSERT INTO `tt` (`id`, `from_date`, `to_date`) VALUES
 (78, '2017-04-01', '2018-07-02'),
 (113, '2018-06-01', '2018-06-29'),
 (1, '2018-09-05', '2018-09-05'),
-(32, '2018-09-01', '2018-09-19'),
+(32, '2018-08-31', '2018-08-31'),
 (36, '2018-07-04', '2018-08-30'),
 (90, '2018-05-31', '2018-05-31'),
 (112, '2018-05-30', '2018-05-31'),
@@ -3659,12 +3598,6 @@ ALTER TABLE `mm_department`
 -- Indexes for table `mm_designation`
 --
 ALTER TABLE `mm_designation`
-  ADD PRIMARY KEY (`sl_no`);
-
---
--- Indexes for table `mm_earning_deduction`
---
-ALTER TABLE `mm_earning_deduction`
   ADD PRIMARY KEY (`sl_no`);
 
 --
@@ -3753,17 +3686,12 @@ ALTER TABLE `mm_claim_head`
 -- AUTO_INCREMENT for table `mm_department`
 --
 ALTER TABLE `mm_department`
-  MODIFY `sl_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sl_no` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mm_designation`
 --
 ALTER TABLE `mm_designation`
-  MODIFY `sl_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `mm_earning_deduction`
---
-ALTER TABLE `mm_earning_deduction`
-  MODIFY `sl_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sl_no` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mm_manager`
 --
@@ -3778,12 +3706,13 @@ ALTER TABLE `mm_project`
 -- AUTO_INCREMENT for table `mm_project_type`
 --
 ALTER TABLE `mm_project_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `tm_audit_trail`
 --
 ALTER TABLE `tm_audit_trail`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1066;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1052;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
