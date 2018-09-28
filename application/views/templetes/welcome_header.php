@@ -130,10 +130,30 @@
               ?>
           </ul>
         </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Claim">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePayrollPages" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-money"></i>
+            <span class="nav-link-text">Payroll</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapsePayrollPages">
+              <li>
+                <a class="nav-link" href="<?php echo site_url('payroll/printPs')?>">View Paysheet</a>
+              </li>
+              <?php
+                if (($this->session->userdata('loggedin')->user_type != 'E') ) {?>
+                <li>
+                  <a class="nav-link" href="<?php echo site_url('payroll/paysheet')?>">Upload Paysheet</a>
+                </li>
+              <?php
+                }
+              ?>
+          </ul>
+        </li>
         
             <?php
-                if ($this->session->userdata('loggedin')->user_type == 'A') {?>
-
+		if ($this->session->userdata('loggedin')->user_type == 'A') {?>
+ 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Master Components">
                   <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-wrench"></i>
@@ -393,4 +413,3 @@
     }
     ?>
   </nav>
-  

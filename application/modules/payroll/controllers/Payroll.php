@@ -6,141 +6,7 @@
 		$this->load->model('AdminProcess');
 		$this->load->model('Process');
 	   }
-													/*Department Dashboard*/
-	   /*public function department(){
-		if($this->session->userdata('is_login')->user_type == 'A'){
-		   $title['title']         = 'Claim-Manage Department';
-		   $dept['dept_dtls']      = $this->PayrollModel->select_all('mm_department');
-		   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-    	   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-    	   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-		   $this->load->view('templetes/welcome_header',$title);
-		   $this->load->view("department/viewDepartment",$dept); 
-		   $this->load->view('templetes/welcome_footer');
-		}
 
-	  }
-													 
-	   public function addDept(){
-		   if($_SERVER['REQUEST_METHOD']=="POST"){
-			   $dept 		= $this->input->post('dept');
-			   $user_id 	= $this->session->userdata('loggedin')->user_id;
-			   $time    	= date("Y-m-d h:i:s");
-			   $data_array  = array(
-			      	"department"  		=> $dept,
-			      	"created_by"		=> $user_id,
-					"created_dt"		=> $time		      
-				);
-			$this->PayrollModel->insert_data('mm_department',$data_array);
-			$this->session->set_flashdata('msg','Save Successful');
-			redirect('payroll/department');
-		   }else{
-		   	 $title['title']         = 'Claim-Add New Department';
-		   	 $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-		   	 $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-             $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-		   	 $this->load->view('templetes/welcome_header',$title);
-		   	 $this->load->view("department/addDepartment");
-		   	 $this->load->view('templetes/welcome_footer');
-		 }
-	   }
-
-	   												 
-	   public function editDept(){								
-	   		if($_SERVER['REQUEST_METHOD']=="POST"){
-	   			$slno 		 = $this->input->post('sl_no');
-	   			$dept 		 = $this->input->post('dept');						
-	   			$user_id     = $this->session->userdata('loggedin')->user_id;
-			    $time        = date("Y-m-d h:i:s");
-			    $data_array  = array(
-                                "department"     => $dept,
-                                "modified_by"    => $user_id,
-                                "modified_dt"    => $time
-                            );
-			    $where_array    = array("sl_no"	=> $slno);
-			    $this->PayrollModel->edit_data('mm_department',$data_array,$where_array);
-	   		    $this->session->set_flashdata('msg','Save Successful');
-				redirect('payroll/department');
-	   		}else{
-	   			$title['title']         = 'Claim-Edit Department';
-                $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-                $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-                $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-
-                $params = $this->input->get('sl_no');        
-                $dept['dept_dtls']  = $this->PayrollModel->select_row('mm_department',$params);
-                $this->load->view('templetes/welcome_header',$title);
-                $this->load->view("department/editDept",$dept);
-                $this->load->view('templetes/welcome_footer');
-            }
-	   }*/
-													/*Designation Dashboard*/
-       /*public function designation(){
-		if($this->session->userdata('is_login')->user_type == 'A'){
-		   $title['title']         = 'Claim-Manage Designation';
-		   $desig['desig_dtls']    = $this->PayrollModel->select_all('mm_designation');
-		   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-    	   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-    	   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-		   $this->load->view('templetes/welcome_header',$title);
-		   $this->load->view("designation/viewDesig",$desig); 
-		   $this->load->view('templetes/welcome_footer');
-		}													
-	   }	
-	   												 
-	   public function addDesig(){
-		   if($_SERVER['REQUEST_METHOD']=="POST"){
-			   $desig 		= $this->input->post('desig');
-			   $user_id 	= $this->session->userdata('loggedin')->user_id;
-			   $time    	= date("Y-m-d h:i:s");
-			   $data_array  = array(
-			      	"designation"  		=> $desig,
-			      	"created_by"		=> $user_id,
-					"created_dt"		=> $time		      
-				);
-			$this->PayrollModel->insert_data('mm_designation',$data_array);
-			$this->session->set_flashdata('msg','Save Successful');
-			redirect('payroll/designation');
-		   }else{
-		   	 $title['title']         = 'Claim-Add New Designation';
-		   	 $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-		   	 $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-             $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-		   	 $this->load->view('templetes/welcome_header',$title);
-		   	 $this->load->view("designation/addDesig");
-		   	 $this->load->view('templetes/welcome_footer');
-		 }
-	   }
-	   												 
-	   public function editDesig(){
-	   		if($_SERVER['REQUEST_METHOD']=="POST"){
-	   			$slno  		 = $this->input->post('sl_no');
-	   			$desig 		 = $this->input->post('desig');						
-	   			$user_id     = $this->session->userdata('loggedin')->user_id;
-			    $time        = date("Y-m-d h:i:s");
-			    $data_array  = array(
-                                "designation"    => $desig,
-                                "modified_by"    => $user_id,
-                                "modified_dt"    => $time
-                            );
-			    $where_array    = array("sl_no"	=> $slno);
-			    $this->PayrollModel->edit_data('mm_designation',$data_array,$where_array);
-	   			$this->session->set_flashdata('msg','Save Successful');
-				redirect('payroll/designation');
-	   		}else{
-	   			$title['title']         = 'Claim-Edit Designation';
-                $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-                $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-                $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-
-                $params = $this->input->get('sl_no');
-                $desig['desig_dtls']  = $this->PayrollModel->select_row('mm_designation',$params);
-                $this->load->view('templetes/welcome_header',$title);
-                $this->load->view("designation/editDesig",$desig);
-                $this->load->view('templetes/welcome_footer');
-            }
-	   }*/
-	
 	   public function employee(){									 /*Employee Dashboard*/
 		   if($this->session->userdata('is_login')->user_type == 'A'){
                    	$title['title']         = 'Claim-Manage Employee Details';
@@ -164,25 +30,25 @@
 			   $doj		= $dojtemp->format('Y-m-d');
 			   $emppan      = $this->input->post('pan_no');
 			   $empacno     = $this->input->post('ac_no');
-			   $emppf      = $this->input->post('pf_no');
-			   $empesi     = $this->input->post('esi_no');
+			   $emppf       = $this->input->post('pf_no');
+			   $empesi      = $this->input->post('esi_no');
 			   $status	= 1;
 			   $user_id 	= $this->session->userdata('loggedin')->user_id;
 			   $time    	= date("Y-m-d h:i:s");
 			   $data_array  = array(
-			      	"emp_no"  			=> $empno,
-			      	"emp_name"			=> $empname,
-			      	"emp_catg"			=> 0,
+			      	"emp_no"  		=> $empno,
+			      	"emp_name"		=> $empname,
+			      	"emp_catg"		=> 0,
 			      	"designation"		=> $empdesg,
-    			    "sector"			=> $empdept,
+    			    	"sector"		=> $empdept,
 	 		      	"date_of_joining"	=> $doj,
-		    	    "status_flag"		=> $status,
-			      	"pan_no"			=> $emppan,
+		    	    	"status_flag"		=> $status,
+			      	"pan_no"		=> $emppan,
 	 		      	"bank_ac_no"		=> $empacno,
-	 		      	"pf_AC_no"			=> $emppf,
-	 		      	"esi_no"  		 	=> $empesi,
+	 		      	"pf_AC_no"		=> $emppf,
+	 		      	"esi_no"  		=> $empesi,
 			      	"created_by"		=> $user_id,
-					"created_dt"		=> $time		      
+				"created_dt"		=> $time		      
 				);
 			   	   
 			 $this->PayrollModel->insert_data('mm_employee',$data_array);
@@ -192,15 +58,15 @@
                     $title['title']         = 'Claim-Add New Employee';
                     $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
                     $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-             		$title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-             		$data['dept'] 			= $this->PayrollModel->select_all('mm_department');
-             		$data['desg'] 			= $this->PayrollModel->select_all('mm_designation');
+             	    $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+             	    $data['dept'] 	    = $this->PayrollModel->select_all('mm_department');
+             	    $data['desg'] 	    = $this->PayrollModel->select_all('mm_designation');
 
-                         $this->load->view('templetes/welcome_header',$title);
-                         $this->load->view("employee/addEmp",$data);
-                         $this->load->view('templetes/welcome_footer');
+                    $this->load->view('templetes/welcome_header',$title);
+                    $this->load->view("employee/addEmp",$data);
+                    $this->load->view('templetes/welcome_footer');
                  }
-	    }
+	   }
 
 	   public function editEmp(){									/*Edit Employee*/
 		   if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -211,9 +77,10 @@
                            $doj         = $this->input->post('doj');
                            $emppan      = $this->input->post('pan_no');
                            $empacno     = $this->input->post('ac_no');
-			   			   $status      = $this->input->post('status');
-			   //$dottemp     = DateTime::createFromFormat('d/m/Y',$this->input->post('dot'));
-			               $dot         = $this->input->post('dot');
+			   $status      = $this->input->post('status');
+			   $emppf       = $this->input->post('pf_no');
+			   $empesi      = $this->input->post('esi_no');
+			   $dot         = $this->input->post('dot');
                            $user_id     = $this->session->userdata('loggedin')->user_id;
 			   $time        = date("Y-m-d h:i:s");
 			   $data_array  = array(
@@ -226,10 +93,12 @@
                                 "status_flag"           => $status,
                                 "pan_no"                => $emppan,
                                 "bank_ac_no"            => $empacno,
+                                "pf_AC_no"		=> $emppf,
+	 		      	"esi_no"  		=> $empesi,
                                 "modified_by"           => $user_id,
                                 "modified_dt"           => $time
-			);
-			 $where_array    = array("emp_no"	=> $empno);
+				);
+			 $where_array    = array("emp_no" => $empno);
 			 $this->PayrollModel->edit_data('mm_employee',$data_array,$where_array);
                          $this->session->set_flashdata('msg','Save Successful');
                          redirect('payroll/employee');
@@ -248,163 +117,208 @@
 		 }
 	   }
 
-	   															/*Upload Employee CSV File*/
-	  /* 	public function uplEmp(){
-	    	if($_SERVER['REQUEST_METHOD']=="POST"){
-		    	if($_POST['importSubmit']){
-				
-		//validate whether uploaded file is a csv file
-			$csvMimes = array('text/x-comma-separated-values',
-					  'text/comma-separated-values',
-					  'application/octet-stream',
-					  'application/vnd.ms-excel',
-					  'application/x-csv',
-					  'text/x-csv',
-					  'text/csv',
-					  'application/csv',
-					  'application/excel',
-					  'application/vnd.msexcel',
-					  'text/plain');
+	   												/*Upload Employee CSV File*/
+	   public function uplEmp(){
+		   if($_SERVER['REQUEST_METHOD']=="POST"){
+			   if($_POST['importSubmit']){						//validate whether uploaded file is a csv file
+				   $csvMimes = array('text/x-comma-separated-values',
+					   'text/comma-separated-values',
+					   'application/octet-stream',
+					   'application/vnd.ms-excel',
+					   'application/x-csv',
+					   'text/x-csv',
+					   'text/csv',
+					   'application/csv',
+					   'application/excel',
+					   'application/vnd.msexcel',
+					   'text/plain');
 
-			if(!empty($_FILES['upemp']['name']) && in_array($_FILES['upemp']['type'],$csvMimes)){
-				
-				if($_FILES['upemp']['tmp_name']){
+				   if(!empty($_FILES['upemp']['name']) && in_array($_FILES['upemp']['type'],$csvMimes)){
+					   
+					   if($_FILES['upemp']['tmp_name']){
+						   
+						   $csvFile = fopen($_FILES['upemp']['tmp_name'], 'r');
+						   
+						   while(($line = fgetcsv($csvFile)) !== FALSE){
+							   
+							   if($line[0]!='' && $line[0]!='Employee No.'){
+								   $user_id = $this->session->userdata('loggedin')->user_id;
+								   $time    = date('Y-m-d h:i:s');
+														//echo"<pre>";
+														//var_dump($line);
+								   $data = array(
+									    "emp_no"   		  => $line[0],
+  									    "emp_name"		  => $line[1],
+				   			   		    "emp_catg"   	  => 0,
+						   			    "designation"	  => $line[2],
+			   			   			    "sector"		  => $line[3],
+						   			    "date_of_joining"	  => $line[4],		   
+					   	   			    "status_flag" 	  => 1,
+			   			   			    "date_of_termination" => NULL,
+						   			    "pan_no"		  => $line[5],
+						   			    "bank_ac_no" 	  => $line[6],
+						   			    "pf_ac_no"		  => $line[7],
+						   			    "esi_no"		  => $line[8],
+						   			    "created_by"   	  => $user_id,
+									    "created_dt"   	  => $time,
+									    "modified_by"         => NULL,
+									    "modified_dt"         => NULL
+					   			  );
+					 	                  $this->PayrollModel->insert_data('mm_employee',$data);
+							   }  
+						   }
+						   $this->session->set_flashdata('msg', 'Successfully Added!');
+						   redirect('payroll/employee');			
+						   fclose($csvFile);
+						   $qstring = '?status=succ';
+					   }else{
+						   $qstring = '?status=err';
+					   }
+				   }else{
+					   $qstring = '?status=invalid_file';
+				   }			   				   
+			   }
+		   }else{    
+			   $title['title']         = 'Claim-Upload Employee Details';
+            		   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
+            		   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
+            		   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+            		   $this->load->view('templetes/welcome_header',$title);
+            		   $this->load->view('employee/uploadEmp');
+			   $this->load->view('templetes/welcome_footer');
+		   }	
+	   }														
 
-					$csvFile = fopen($_FILES['upemp']['tmp_name'], 'r');
+	   public function dwnEmp(){
+		   $this->load->helper('download');
+		   $path = file_get_contents(base_url('/application/modules/payroll/views/employee/sample_Employee_details.csv'));
+		   force_download('sample_Employee_details.csv', $path);
+	   }
 
-					while(($line = fgetcsv($csvFile)) !== FALSE){
+	   public function printPs(){
+		   $title['title']         = 'Claim-View Paysheet';
+		   $user_id = $this->session->userdata('loggedin')->user_id;
+		   $data['data_dtls']      = $this->PayrollModel->print_ps($user_id);
+		   //echo "<pre>";
+	   	   //var_dump($data);	   
+		   //die;	
+                   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
+                   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
+                   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+                   $this->load->view('templetes/welcome_header',$title);
+                   $this->load->view("paysheet/viewPay",$data);
+                   $this->load->view('templetes/welcome_footer');
+	   }
 
-						if($line[0]!='' && $line[0]!='Employee No.'){
-							echo"<pre>";
-							var_dump($line);
-							
-					   		   $data = array(
-						   			 "emp_code"   		=> $line[0],
-						   			 "emp_name"		=> $line[1],
-				   		   			 "emp_catg"   		=> $line[2],
-						   			 "join_dt"		=> $line[3],
-			   			   			 "ret_dt"		=> $line[4],
-						   			 "designation"		=> $line[5],		   
-					   	   			 "department" 		=> $line[6],
-			   			   			 "location"		=> 'NA',
-						   			 "pan_no"		=> $line[7],
-						   			 "bank_name"  		=> 'NA',
-						   			 "bank_ac_no" 		=> $line[8],
-						   			 "pf_ac_no"		=> $line[9],
-						   			 "deduction_flag"	=> 'Y',
-						   			 "cash_allow"		=> $line[10],
-						   			 "band_pay"		=> $line[11],
-						   			 "grade_pay"		=> $line[12],
-						   			 "p_tax_id"		=> 0,
-						   			 "ir_pay"		=> $line[13],
-						   			 "created_by"   	=> $this->session->userdata('loggedin')->user_name,
-									 "created_dt"   	=> date('Y-m-d h:i:s'),
-									 "emp_status"		=> 'A',
-									 "modified_by"		=> NULL,
-									 "modified_dt" 		=> NULL
-					   			);
-					 	   
+	  				
+	   public function paysheet(){
+		   if($this->session->userdata('is_login')->user_type == 'A'){
+			   $title['title']	   =	'Claim-Manage Paysheets';
+			   $data['data_dtls']      = $this->PayrollModel->select_paysheet();
+                           $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
+                           $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
+                           $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+                           $this->load->view('templetes/welcome_header',$title);
+                           $this->load->view("paysheet/viewPaysheet",$data);
+                           $this->load->view('templetes/welcome_footer');
 
-					    $this->Payroll->f_insert('md_employee', $data);
-					}
-				}	
-					    $this->session->set_flashdata('msg', 'Successfully Added!');
-					    redirect('payroll/addemp');			
-					  
-				   fclose($csvFile);
-				   $qstring = '?status=succ';
-			   }else{
-			   	$qstring = '?status=err';
+		   }
+	   }
+												/*Upload Paysheet*/
+	   public function uplPay(){
+		   if($_SERVER['REQUEST_METHOD']=="POST"){
+			   if($_POST['importSubmit']){						//validate whether uploaded file is a csv file
+				   $csvMimes = array('text/x-comma-separated-values',
+					   'text/comma-separated-values',
+					   'application/octet-stream',
+					   'application/vnd.ms-excel',
+					   'application/x-csv',
+					   'text/x-csv',
+					   'text/csv',
+					   'application/csv',
+					   'application/excel',
+					   'application/vnd.msexcel',
+					   'text/plain');
+				   $salmonth = $this->input->post('sal_mth');
+				   $salyear  = $this->input->post('sal_yr');
+
+				   if(!empty($_FILES['upemp']['name']) && in_array($_FILES['upemp']['type'],$csvMimes)){
+
+					   if($_FILES['upemp']['tmp_name']){
+
+						   $csvFile = fopen($_FILES['upemp']['tmp_name'], 'r');
+
+						   while(($line = fgetcsv($csvFile)) !== FALSE){
+
+							   if($line[0]!='' && $line[0]!='Employee No.'){
+								   $user_id = $this->session->userdata('loggedin')->user_id;
+								   $time    = date('Y-m-d h:i:s');
+														//echo"<pre>";
+														//var_dump($line);
+								   $data = array(
+									    "trans_dt"		  => date('Y-m-d'),
+								   	    "sal_month"		  => $salmonth,
+									    "sal_year"      	  => $salyear,
+									    "emp_no"   		  => $line[0],
+  									    "emp_name"		  => $line[1],
+						   			    "basic_sal"	  	  => $line[2],
+			   			   			    "conv_allow"	  => $line[3],
+						   			    "da_amt"	  	  => $line[4],
+					   	   			    "hra_amt"		  => $line[5],
+						   			    "inc_amt" 	  	  => $line[6],
+						   			    "lta_amt"		  => $line[7],
+									    "med_amt"		  => $line[8],
+									    "misc_amt"            => $line[9],
+									    "out_amt"             => $line[10],
+									    "proj_amt"            => $line[11],
+									    "var_amt"             => $line[12],
+									    "tot_ear"             => $line[13],
+									    "arr_pf"              => $line[14],
+									    "epf_amt"             => $line[15],
+									    "adv_amt"             => $line[16],
+									    "esi_amt"             => $line[17],
+									    "med_ins"             => $line[18],
+									    "mob_amt"             => $line[19],
+									    "ptax_amt"            => $line[20],
+								    	    "tds_amt"             => $line[21],
+									    "tot_ded"             => $line[22],
+									    "net_amt"             => $line[23],		    
+						   			    "created_by"   	  => $user_id,
+									    "created_dt"   	  => $time,
+									    "modified_by"         => NULL,
+									    "modified_dt"         => NULL
+					   			  );
+					 	                  $this->PayrollModel->insert_data('tm_paysheet',$data);
+							   }
+						   }
+						   $this->session->set_flashdata('msg', 'Successfully Added!');
+						   redirect('payroll/paysheet');
+						   fclose($csvFile);
+						   $qstring = '?status=succ';
+					   }else{
+						   $qstring = '?status=err';
+					   }
+				   }else{
+					   $qstring = '?status=invalid_file';
+				   }
 			   }
 		   }else{
-		  	$qstring = '?status=invalid_file';
-		   }			   				   
-	    }
-	 }else{    
-    		$title['title']         = 'Claim-Upload Employee Details';
-            $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-            $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-            $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-            $this->load->view('templetes/welcome_header',$title);
-            $this->load->view('employee/uploadEmp');
-			$this->load->view('templetes/welcome_footer');
-    	  }	
-    }														
-
-	   	public function dwnEmp(){
-    		$this->load->helper('download');
-			$path = file_get_contents(base_url('/application/modules/payroll/views/sample_Employee_details.csv'));
-			force_download('sample_Employee_details.csv', $path);
-    	}		*/
-
-    													/*Earning Deduction Dashboard*/
-	   /*public function earningDeduction(){
-                if($this->session->userdata('is_login')->user_type == 'A'){
-                   $title['title']         = 'Claim-Manage Earning & Deductions';
-                   $data['data_dtls']      = $this->PayrollModel->select_all('mm_earning_deduction');
-                   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-           	   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-           	   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-                   $this->load->view('templetes/welcome_header',$title);
-                   $this->load->view("heads/viewHeads",$data);
-                   $this->load->view('templetes/welcome_footer');
-                }
+			   $title['title']         = 'Claim-Upload Paysheets';
+            		   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
+            		   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
+            		   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+            		   $this->load->view('templetes/welcome_header',$title);
+            		   $this->load->view('paysheet/uploadPay');
+			   $this->load->view('templetes/welcome_footer');
+		   }
 	   }
-	   													 
-	   public function addEdh(){
-                   if($_SERVER['REQUEST_METHOD']=="POST"){
-			   $type 	= $this->input->post('edh_type');
-			   $name 	= $this->input->post('edh');	
-			   $user_id     = $this->session->userdata('loggedin')->user_id;
-			   $time        = date("Y-m-d h:i:s");
-			   $data_array	= array("ed_type"=>$type,
-			   			"ed_desc"=>$name);
-
-                           $this->PayrollModel->insert_data('mm_earning_deduction',$data_array);
-                           $this->session->set_flashdata('msg','Save Successful');
-                           redirect('payroll/earningDeduction');
-                   }else{
-                         $title['title']         = 'Claim-Add New Earnings & Deductions';
-                         $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-                         $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-             		 $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-                         $this->load->view('templetes/welcome_header',$title);
-                         $this->load->view("heads/addEdh");
-                         $this->load->view('templetes/welcome_footer');
-                 }
+												/*Download Sample Paysheet*/
+	   public function dwnPay(){
+		   $this->load->helper('download');
+		   $path = file_get_contents(base_url('/application/modules/payroll/views/paysheet/sample_paysheet.csv'));
+		   force_download('sample_paysheet.csv', $path);
 	   }
-	   												       
-	   public function editEdh(){
-		   if($_SERVER['REQUEST_METHOD']=="POST"){
-			   $slno  	= $this->input->post('sl_no');
-                           $type  	= $this->input->post('edh_type');
-			   $desc  	= $this->input->post('edh_desc');
-			   $user_id     = $this->session->userdata('loggedin')->user_id;
-                           $time        = date("Y-m-d h:i:s");
-			   $data_array	= array(
-				   "ed_type"	=>$type,
-				   "ed_desc"	=>$desc,
-				   "modified_by"=>$user_id,
-				   "modified_dt"=>$time
-			   );
-			   $where_array = array("sl_no"=>$slno);		
-			   $this->PayrollModel->edit_data('mm_earning_deduction',$data_array,$where_array);
-                           $this->session->set_flashdata('msg','Save Successful');
-                           redirect('payroll/earningDeduction');
-                        }else{
-                                $title['title']         = 'Claim-Edit Head';
-                		$title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
-                		$title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
-                		$title['total_reject']  = $this->Process->countRejClaim('tm_claim');
-
-                		$params = $this->input->get('sl_no');
-                		$data['data_dtls']  = $this->PayrollModel->select_row('mm_earning_deduction',$params);
-                		$this->load->view('templetes/welcome_header',$title);
-                		$this->load->view("heads/editEdh",$data);
-                		$this->load->view('templetes/welcome_footer');
-            		}
-           	}*/
+	   /*****************************/
+    }
 
 
-	
-	}

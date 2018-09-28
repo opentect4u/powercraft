@@ -1,6 +1,6 @@
 <div class="content-wrapper">
   <div class="container-fluid">
-  	<h3>Upload .csv File for Employee Details</h3>
+  	<h3>Upload Paysheet</h3>
 	<hr> 
 		<label for="sample_file" class="field-split align-left labelstyle">Sample File:</label>	
 		<a name="sample_file" href="<?php echo site_url('payroll/dwnEmp');?>">Download</a>
@@ -24,10 +24,3 @@
 		</form>
  </div>
 </div>
-
-
-
-
-
-	
-

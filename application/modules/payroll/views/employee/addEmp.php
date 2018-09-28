@@ -2,8 +2,7 @@
   <div class="container-fluid">
 	<h3>Add New Employee</h3>
 	<hr> 
-	<form style="max-width:800px;background:#fafafa;padding:30px;box-shadow: 1px 1px 25px rgba(0,0,0,0.35);
-                     border-radius:10px;border: 2px solid #305a72"
+	<form style="max-width:800px;background:#fafafa;padding:30px;box-shadow: 1px 1px 25px rgba(0,0,0,0.35);border-radius:10px;border: 2px solid #305a72"
 	      class="form-style-9" method="POST" action="<?php echo site_url('payroll/addEmp'); ?>">
       <ul>
 	 <li>

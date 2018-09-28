@@ -61,6 +61,21 @@
 	               value="<?php echo($data_dtls->bank_ac_no);?>">	  
 	    </li>
 	    <br><br>
+	    <li>
+	        <label for="pf_no" style="display:inline;"class="field-split align-left labelstyle">
+	               PF No.</label>	
+	        <label for="esi_no" style="display:inline;margin-left:268px;"
+	               class="field-split align-left labelstyle">ESI No.</label>
+
+	        <input type="text" name="pf_no" style="width:300px;display:inline;"
+	               class="field-style field-split align-left" 
+	               value="<?php echo($data_dtls->pf_ac_no);?>">
+
+	        <input type="text" name="esi_no" style="width:300px;display:inline;margin-left:20px" 
+	               class="field-style field-split align-left" 
+	               value="<?php echo($data_dtls->esi_no);?>">	  
+	    </li>
+	    <br><br>
 		<li>
 	    	<select type="text" name="status" style="width:620px;" 
 	    		    class="field-style field-split align-left"> 
