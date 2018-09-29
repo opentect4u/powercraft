@@ -197,11 +197,8 @@
 
 	   public function printPs(){
 		   $title['title']         = 'Claim-View Paysheet';
-		   $user_id = $this->session->userdata('loggedin')->user_id;
-		   $data['data_dtls']      = $this->PayrollModel->print_ps($user_id);
-		   //echo "<pre>";
-	   	   //var_dump($data);	   
-		   //die;	
+		   $user_id 		   = $this->session->userdata('loggedin')->user_id;
+		   $data['data_dtls']      = $this->PayrollModel->print_ps($user_id);	
                    $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
                    $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
                    $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
@@ -209,6 +206,23 @@
                    $this->load->view("paysheet/viewPay",$data);
                    $this->load->view('templetes/welcome_footer');
 	   }
+
+	   public function finalPrintPs(){
+                   $title['title']         = 'Claim-View Paysheet';
+				   $emp_no   = $this->input->get('emp_no'); 
+				   $trans_dt = $this->input->get('trans_dt');	
+
+                   $data['data_dtls']      = $this->PayrollModel->payslip($emp_no,$trans_dt);
+
+                   $data['emp_dtls'] 	   = $this->PayrollModel->getEmp($emp_no);
+
+                   $title['total_claim']   = $this->AdminProcess->countClaim('mm_manager');
+                   $title['total_payment'] = $this->AdminProcess->countRow('tm_payment');
+                   $title['total_reject']  = $this->Process->countRejClaim('tm_claim');
+                   $this->load->view('templetes/welcome_header',$title);
+                   $this->load->view("paysheet/printPay",$data);
+                   $this->load->view('templetes/welcome_footer');
+           }
 
 	  				
 	   public function paysheet(){
@@ -320,5 +334,3 @@
 	   }
 	   /*****************************/
     }
-
-

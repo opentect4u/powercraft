@@ -3,7 +3,11 @@
       <h3>View Paysheet</h3>
       <hr>
         <div class="card mb-3">
-        <div class="card-header">
+	<div class="card-header">
+	     <!--<button class="btn btn-success add-btn" data-toggle="tooltip" data-placement="bottom" 
+        title="" data-original-title="Upload Paysheet" onclick="location.href='<?php //echo site_url("payroll/uplPay"); ?>';">
+               <a><i class="fa fa-user-plus fa-lg" aria-hidden="true"></i> Upload .csv File</a> 
+      </button>-->
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -15,7 +19,7 @@
 		  <th>Month</th>
             	  <th>Gross Amount</th>
 		  <th>Net Amount</th>
-                  <th></th>
+		  <th>Print</th> 
                 </tr>
               </thead>
               <tfoot>
@@ -24,25 +28,65 @@
                   <th>Year</th>
                   <th>Month</th>
                   <th>Gross Amount</th>
-                  <th>Net Amount</th>
-                  <th></th>
+		  <th>Net Amount</th>
+		  <th>Print</th>	
                 </tr>
               </tfoot>
               <tbody>
-              <?php if($data_dtls){
-               foreach ($data_dtls as $values):
-                ?>
+	      <?php if($data_dtls){
+	      	    foreach ($data_dtls as $values):
+              ?>
                 <tr>
-		  <td><?php echo 'hw'//echo date('d/m/Y',strtotime($values->trans_dt));?></td>
+		  <td><?php echo date('d/m/Y',strtotime($values->trans_dt));?></td>
                   <td><?php echo $values->sal_year;?></td>
-                  <td><?php echo $values->sal_month;?></td>
+		  <td><?php
+		    $mth=$values->sal_month;
+		    switch($mth){
+		    	case 1:
+			 $month='January';
+			 break;
+			case 2:
+			 $month="February";
+			 break;
+			case 3:
+                         $month="March";
+                         break;
+ 			case 4:
+			 $month="April";
+		 	 break;
+			case 5:
+                         $month="May";
+                         break;
+	 		case 6:
+                         $month="June";
+                         break;
+			case 7:
+                         $month="July";
+                         break;
+			case 8:
+                         $month="August";
+                         break;
+			case 9:
+                         $month="September";
+                         break;
+			case 10:
+                         $month="October";
+                         break;
+			case 11:
+                         $month="November";
+                         break;
+ 			case 13:
+                         $month="December";
+			 break;
+		    } 
+		      echo $month;?></td>
                   <td><?php echo $values->tot_ear;?></td>
 		  <td><?php echo $values->net_amt;?></td>            
-                  <td><button class="btn btn-primary edit-btn" data-toggle="tooltip" data-placement="bottom" title="" 
-		       data-original-title="Edit Employee Details" 
-		       onclick="location.href='<?php echo site_url("payroll/editEmp?emp_no=$values->emp_no"); ?>'">
-		       
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <td><button class="btn print-btn onClick" data-toggle="tooltip" data-placement="bottom" title="" 
+		       data-original-title="Print" 
+		       onclick="location.href='<?php echo site_url("payroll/finalPrintPs?trans_dt=$values->trans_dt&emp_no=$values->emp_no");?>'">
+
+                      <i class="fa fa-print fa-lg" aria-hidden="true"></i>
 		      </button>
 		  </td>
                 </tr>

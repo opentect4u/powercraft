@@ -39,11 +39,39 @@
 									    from   tm_paysheet)");
 				return $data->result();
 			}
-
-			public function print_ps($emp_no){
+											/*Select data for an emp to print paysheet*/
+			public function print_ps($emp_no){						
 				$this->db->select('*');
 				$this->db->where('emp_no',$emp_no);
 				$data=$this->db->get('tm_paysheet');
-				return $data->row();
+				return $data->result();
 			}
+
+			public function payslip($emp_no, $trans_dt){
+				$this->db->select('*');
+				$this->db->where('emp_no',$emp_no);
+				$this->db->where('trans_dt',$trans_dt);
+				$data=$this->db->get('tm_paysheet');
+				return $data->row();
+			} 
+
+
+			public function getEmp($emp_no) {
+
+				$this->db->select('emp_no,
+								   emp_name,
+								   emp_catg,
+								   designation,
+								   sector,
+								   date_of_joining,
+								   pan_no,
+								   bank_ac_no,
+								   pf_ac_no,
+								   esi_no');
+				$this->db->where('emp_no', $emp_no);
+
+				$result = $this->db->get('mm_employee');
+
+				return $result->row();
+			} 
 		}
