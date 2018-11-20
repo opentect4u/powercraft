@@ -50,7 +50,6 @@ $(document).ready(function($){
                 <option value="CTO">CTO</option>
                 <option value="Data Entry Operator">Data Entry Operator</option>
                 <option value="Director">Director</option>
-                <option value="COO">Chief Operating Officer(COO)</option>
                 <option value="Manager">Manager</option>
                 <option value="Marketing Executive">Marketing Executive</option>
                 <option value="Office Staff">Office Staff</option>

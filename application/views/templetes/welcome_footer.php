@@ -1,3 +1,5 @@
+ <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
@@ -350,7 +352,7 @@
           if(data==0) 
             window.location.href = "<?php echo site_url("Users/logout")?>";
           });
-      },60*60*1000);
+      },20*60*1000);
   });
 </script>
 

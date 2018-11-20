@@ -515,21 +515,10 @@ class adminProcess extends CI_Model {
 	}
 
 	public function prwExpence($from_date,$to_date){
-	   // $this->set_dt($from_date,$to_date);
-        //$from_date = $from_date.' 00:00:01';
-		//$to_date = $to_date.' 23:59:59';
-		$sql = "SELECT date(a.approval_dt) approval_dt,
-		     		   a.emp_no emp_no, 
-		  			   b.emp_name emp_name,
-		               a.purpose purpose, 
-		               SUM(a.amount) amount 
-		        FROM   tm_claim a,
-		               mm_employee b
-		        WHERE  a.emp_no = b.emp_no  
-		        AND    a.approval_status = 1 
-		        AND    date(a.approval_dt) BETWEEN '$from_date' AND '$to_date' 
-		        GROUP BY date(a.approval_dt),a.emp_no, b.emp_name,a.purpose
-		        order by date(a.approval_dt),a.emp_no";
+	    $this->set_dt($from_date,$to_date);
+        $from_date = $from_date.' 00:00:01';
+		$to_date = $to_date.' 23:59:59';
+		$sql = "SELECT emp_no, purpose, SUM(amount) amount FROM tm_claim WHERE approval_status = 1 AND approval_dt BETWEEN '$from_date' AND '$to_date' GROUP BY emp_no, purpose";
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -777,7 +766,7 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
     public function closing_balance(){
 		$emp_no = $this->session->userdata('is_login')->emp_no;
 		$this->db->select("balance_amt FROM tm_balance_amt
-						 	 WHERE emp_no = $emp_no and
+						 	 WHERE emp_no = '$emp_no' and
 							 balance_dt = (select max(balance_dt)
 	                    	 from   tm_balance_amt)");
 		$query = $this->db->get();
@@ -788,7 +777,7 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
     	$this->db->select("* FROM tm_balance_amt
 			WHERE emp_no = $emp_no and
 					balance_dt = (select MAX(balance_dt)
-                    from   tm_balance_amt WHERE emp_no = $emp_no)");
+                    from   tm_balance_amt WHERE emp_no = '$emp_no')");
 		$query = $this->db->get();
         return $query->row();
     }
@@ -849,15 +838,19 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
     	$this->db->select('manage_no');
     	$this->db->where('emp_no', $this->session->userdata('is_login')->emp_no);
     	$query = $this->db->get('mm_manager');
+    	
+    	$count = NULL;
 
     	if($query->num_rows() > 0) {
 	        foreach ($query->result() as $row) {
 	            $data[] = $row;
 	        }
-    	}
+    	
 
     	for ($i=0; $i < sizeof($data); $i++) { 
     		$count[] = $this->claimDtls($data[$i]->manage_no);
+    	}
+    	
     	}
     	return $count;
     }
@@ -919,7 +912,7 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
 	
 	public function opening_balance($from_date, $emp_no) {
 		$sql = "SELECT * FROM tm_balance_amt
-			WHERE emp_no = $emp_no and
+			WHERE emp_no = '$emp_no' and
 					balance_dt = (SELECT min(balance_dt)
                     from   tm_balance_amt
                     WHERE  balance_dt <= '$from_date')";

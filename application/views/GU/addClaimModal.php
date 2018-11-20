@@ -5,7 +5,7 @@
     var total = 0;
     
     $("#addrow").click(function(){
-      $("#intro").append('<tr><td><select class="custom-select preferSelect" name="chead[]" style="width: 150px;"><option>Select</option><?php foreach ($chead as $aldta):?><option value="<?php echo $aldta->head_desc?>"><?php echo $aldta->head_desc?></option><?php endforeach;?> </select></td><td><textarea name="remarks[]" class="form-control"  rows="1" cols="35"></textarea></td><td><input type="text" class="form-control amount_cls" name="amount[]" required></td><td><button class="btn btn-danger" data-toggle="tooltip" data-original-title="Remove Row" data-placement="bottom" id="removeRow"><i class="fa fa-remove" aria-hidden="true"></i></button></td></tr>');
+      $("#intro").append('<tr><td><select class="custom-select preferSelect" name="chead[]" style="width: 150px;" required><option value="">Select</option><?php foreach ($chead as $aldta):?><option value="<?php echo $aldta->head_desc?>"><?php echo $aldta->head_desc?></option><?php endforeach;?> </select></td><td><textarea name="remarks[]" class="form-control"  rows="1" cols="35"></textarea></td><td><input type="text" class="form-control amount_cls" name="amount[]" required></td><td><button class="btn btn-danger" data-toggle="tooltip" data-original-title="Remove Row" data-placement="bottom" id="removeRow"><i class="fa fa-remove" aria-hidden="true"></i></button></td></tr>');
       $('.preferSelect').change();
       $('[data-toggle="tooltip"]').tooltip({trigger: "hover"});
     });
@@ -40,13 +40,13 @@
       
   });
   
-  $('#intro').on("change", ".preferSelect", function() {
+  /*$('#intro').on("change", ".preferSelect", function() {
     
     $('.preferSelect').each(function(){
         $('.preferSelect').find('option[value ="' + this.value + '"]').attr("disabled", true);
     
       });
-  });
+  });*/
 
   $('#save').on("click", function() {
     var pname = $('#projectName').val();
@@ -261,8 +261,9 @@ document.getElementById("dt4alert").style.display = "none";
             </thead>
             <tbody id="intro">
               <tr>
-                <td><select class="custom-select  preferSelect" style="width: 150px;" name="chead[]">
-                    <option>Select</option>
+                <td><select class="custom-select  preferSelect" style="width: 150px;" name="chead[]" 
+                     required>
+                    <option value="">Select</option>
                   <?php foreach ($chead as $aldta):?>
                     <option value="<?php echo $aldta->head_desc?>"><?php echo $aldta->head_desc?></option>
                     <?php
@@ -279,7 +280,7 @@ document.getElementById("dt4alert").style.display = "none";
         </div>
       </div>
     </div>
-    Please Save Claim After Completion.
+    
     <div class="modal-footer">
       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
       <button class="btn btn-primary" id="save" type="submit">Save</button>

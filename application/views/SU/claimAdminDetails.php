@@ -6,10 +6,10 @@
     $('#dataTable_filter').hide();
     $('#dataTable_length').hide();
     $('#dataTable_info').hide();
+    $('#dataTable_paginate').hide();
 } );
 
   function printClaimDtls() {    
-      $('#dataTable_paginate').hide();
   var divToPrint = document.getElementById('divToPrint');
 
   var WindowObject = window.open('','Print-Window');

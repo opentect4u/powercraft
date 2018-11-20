@@ -4,18 +4,17 @@
   <nav class="navbar navbar-inverse" style="background: #595959;">
   <div class="container-fluid">
     <div class="form-inline">
-      <div class="form-group col-md-2">
-      <li>
-      <a class="img-fluid align-items-center" href="">
-              <img class="img-responsive" src="<?php echo base_url('Slogo2.png');?>" alt="Cooperative Banking Software"></a>
-    </li>
+      <div class="form-group col-md-2">	
+	<br>
+          <td><a class="img-fluid align-items-center" href="">
+              <img class="img-responsive" src="<?php echo base_url('logo.png');?>" alt="IMG"></a></td>
     </div>
     <div class="col-md-8">
-      <li>
-       <h1 style="text-align: center; font-family:Monotype Corsiva; color:white;">SYNERGIC SOFTEK SOLUTIONS PVT. LTD.</h1>
-      <h3 style="text-align: center; font-family:Monotype Corsiva; color:white;">55 D, DESAPRAN SASHMAL ROAD</h3>
-      <h3 style="text-align: center; font-family:Monotype Corsiva; color:white;">KOLKATA-33</h3>
-    </li>
+      <!--<li>-->
+       <h1 style="text-align: center; font-family:Monotype Corsiva; color:white;"><span>POWERCRAFT </span>ELECTRONICS PVT. LTD.</h1>
+      <h3 style="text-align: center; font-family:Monotype Corsiva; color:white;"><span>BORIVALI </span>WEST</h3>
+      <h3 style="text-align: center; font-family:Monotype Corsiva; color:white;"><span>M</span>UMBAI - 400092</h3>
+    <!--</li>-->
     </div>
     <div claiss="col-md-2">
     </div>
@@ -45,7 +44,7 @@
         <button type="submit" id="cryptstr" class="button buttonBlue"> <span class="glyphicon glyphicon-log-in"></span> Login <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div></button>
 			</form> 
 	 </div>
-	 <a href="http://synergicportal.in/">Home</a>
+	 
 </body>
 
 <script>

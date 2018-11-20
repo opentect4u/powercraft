@@ -79,7 +79,7 @@
                   </tr>
                 </table>
                 </div>
-
+                
                 <?php
               echo"<hr>"; 
           }
@@ -88,14 +88,7 @@
       </div>
       <div class="card-footer">
         <button class="btn print-btn tValHide" type="button" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Print" style="width: 95px;" id="" onclick="printClaimDtls();"><i class="fa fa-print fa-lg" aria-hidden="true"></i></button>
-        
-        
-        <a data-toggle="tooltip" data-original-title="Save As Excel" class="btn btn-lg btn-success" href="<?php echo site_url('Admin/pwExpence_xlsx');?>">
-        	<span class="fa-stack fa-lg">
-        			<i class="fa fa-file-excel-o fa-stack-1x" aria-hidden="true"></i>
-        	</span>
-        </a>
-     </div> 
+      </div>
     </div>
   </div>
 </div>

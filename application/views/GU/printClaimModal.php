@@ -26,7 +26,7 @@
   
 
 <div id="divToPrint">
-  <h2 class="center">Synergic Softek Solutions Pvt. Ltd.</h2>
+  <h2 class="center">SYNERGIC SOFTEK SOLUTIONS PVT. LTD.</h2>
   <h3 class="center underline">Claim Voucher</h3>
  
  <table class="width noborder" cellpadding="3.5">

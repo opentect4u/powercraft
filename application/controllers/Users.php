@@ -67,7 +67,8 @@ class Users extends CI_Controller {
     		$title['title'] = 'Claim-Login';
     		$title['failure_msg'] = $in;
 	    	$this->load->view('templetes/header',$title);
-			$this->load->view('GU/login');
+		$this->load->view('GU/login');
+		$this->load->view('templetes/welcome_footer');
     	}
 	}
 

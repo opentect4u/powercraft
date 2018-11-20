@@ -56,7 +56,7 @@
                   <td><?php echo $aldta->emp_name;?></td>
                   <td><?php echo $aldta->designation;?></td>
                   <td><?php echo $aldta->sector;?></td>
-                  <td><?php if($aldta->date_of_joining > '2002-01-01'){
+                  <td><?php if($aldta->date_of_joining > '1986-01-01'){
                         echo date('d/m/Y',strtotime($aldta->date_of_joining));
                       }else{
                         echo "";

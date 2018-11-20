@@ -1,11 +1,12 @@
 <div class="content-wrapper">
     <div class="container-fluid">
+        <img class="img-responsive" src="<?php echo base_url('Slogo2.png');?>" alt="Powersoft Electronics" >
       <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
+      <!--<ol class="breadcrumb">
         <div style="width: 100%; text-align: center; margine-right:50px; margine-left:10px;">
         <li class="bg-info text-white">
         <a class="img-fluid align-items-center col-6" href="">
-              <img class="img-responsive" src="<?php echo base_url('Slogo2.png');?>" alt="Synergic Claim Software" height="150" width="350">
+              <img class="img-responsive" src="<?php echo base_url('demo.jpg');?>" alt="Synergic Claim Software" height="150" width="350">
           </a>
           <div class="col-12">
             <h1 class="lead" style="Monotype Corsiva">Synergic Softek Solutions Pvt. Ltd.</h1>
@@ -16,7 +17,7 @@
           
         </li>
         </div>
-      </ol>
+      </ol>-->
       <hr>
       <div>
       <h3 class="breadcrumb">Employee Details</h3>
@@ -26,24 +27,32 @@
         if ($alldata) {
           foreach ($alldata as $aldta):?>
       <div class="form-row form-row">
-       <p> Emp Name : <?php echo($aldta->emp_name);?> </p>
+	   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	     <thead>
+                   <tr>
+                      <th>Name</th>
+                      <th>Designation</th>
+                      <th>Sector</th>
+                      <th>Amount Receivable</th>
+                   </tr>
+	      </thead>
+	      <tbody>	
+		   <tr>
+		      <td><?php echo($aldta->emp_name);?></td>
+      		      <td><?php echo($aldta->designation);?></td>
+		      <td><?php echo($aldta->sector);?></td>
+		      <td><?php if ($closing_bal){
+		      			echo $closing_bal->balance_amt;
+	  			  }else{
+					echo  0;  
+				  }
+	  		  ?>
+		      <td>		
+		   </tr>
+	      </tbody>	
+	   </table>	
       </div>
-      <div class="form-row">
-      <p>Designation : <?php echo($aldta->designation);?></p>
-      </div>
-      <div class="form-row">
-      <p>Sector  : <?php echo($aldta->sector);?></p>
-      </div>
-      <div class="form-row">
-      <?php if ($closing_bal){
-
-        echo "Total Receivable : ".$closing_bal->balance_amt;
-      }
-      else{
-        echo "Total Receivable : 0";
-      }
-      ?>
-      </div>
+      
       <?php
       endforeach;
      }?>

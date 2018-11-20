@@ -7,7 +7,6 @@ class Process extends CI_Model {
 	{ 
 		$this->db->select('password');
 		$this->db->where('user_id',$user_id);
-		$this->db->where('user_flag','Y');
 
 		$row = $this->db->get('m_user_master');
 		if($row->num_rows() == 1)
@@ -337,7 +336,7 @@ class Process extends CI_Model {
 		$emp_no = $this->session->userdata('loggedin')->emp_no;
 		$this->set_dt($date1,$date2);
 
-		$sql = "SELECT * FROM tm_claim WHERE emp_no = $emp_no AND claim_dt BETWEEN '$from_date' AND '$to_dt'";
+		$sql = "SELECT * FROM tm_claim WHERE emp_no = '$emp_no' AND claim_dt BETWEEN '$from_date' AND '$to_dt'";
 		$query = $this->db->query($sql);
 		
 		if( $query->num_rows() > 0) {
@@ -354,10 +353,16 @@ class Process extends CI_Model {
 	public function personalLedger($from_date,$to_dt){
 		
 		$emp_no = $this->session->userdata('loggedin')->emp_no;
+				
+		/*$this->db->where('emp_no',$emp_no);
+		$this->db->where('balance_dt >= ' , $date1);
+		$this->db->where('balance_dt <= ' , $date2);
+		$this->db->order_by('balance_dt', 'asc');
+		$query = $this->db->get('tm_balance_amt');*/
 
 		$this->set_dt($from_date,$to_dt);
         
-        $sql = "SELECT * FROM tm_balance_amt WHERE emp_no = $emp_no AND balance_dt BETWEEN '$from_date' AND '$to_dt' ORDER BY balance_dt";
+        $sql = "SELECT * FROM tm_balance_amt WHERE emp_no = '$emp_no' AND balance_dt BETWEEN '$from_date' AND '$to_dt' ORDER BY balance_dt";
 		$query = $this->db->query($sql);
 		
 		if( $query -> num_rows() > 0) {
@@ -399,11 +404,11 @@ class Process extends CI_Model {
 	public function opening_balance($from_date) {
 		$emp_no = $this->session->userdata('loggedin')->emp_no;
 		$sql = "SELECT * FROM tm_balance_amt
-			    WHERE emp_no = $emp_no and
+			    WHERE emp_no = '$emp_no' and
 					balance_dt = (SELECT max(balance_dt)
                     from   tm_balance_amt
                     WHERE  balance_dt < '$from_date'
-                    and    emp_no = $emp_no)";
+                    and    emp_no = '$emp_no')";
 		                    
 		$query = $this->db->query($sql);
 		
@@ -421,9 +426,10 @@ class Process extends CI_Model {
 	public function closing_balance(){
 		$emp_no = $this->session->userdata('loggedin')->emp_no;
 		$this->db->select("* FROM tm_balance_amt
-			WHERE emp_no = $emp_no and
+			              WHERE emp_no = '$emp_no' and
 					balance_dt = (select max(balance_dt)
-                    from   tm_balance_amt where emp_no = $emp_no)");
+                    from   tm_balance_amt where emp_no = '$emp_no')");
+                    
 		$query = $this->db->get();
 		
         return $query->row();

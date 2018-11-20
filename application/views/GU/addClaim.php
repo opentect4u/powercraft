@@ -80,7 +80,7 @@
                 } 
                 else
                 {
-                  echo "Add Your First Claim!";
+                  
                 }
                 ?>
               </tbody>
