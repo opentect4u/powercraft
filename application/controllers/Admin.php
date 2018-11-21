@@ -1284,7 +1284,8 @@ class Admin extends CI_Controller {
 		
 		$this->session->set_userdata('enoFrCdtl',$emp_no);
 		$data['alldata'] = $this->AdminProcess->claimDetails($from_date,$to_date,$emp_no);
-		
+		$data['alltrans'] = $this->AdminProcess->claimTrans($from_date,$to_date,$emp_no);
+
 		$data['emp_dtls'] = $this->AdminProcess->getDetailsbyEmpNo($t_name,$emp_no);
 		$data['date'] = $this->AdminProcess->get_dt();
 		

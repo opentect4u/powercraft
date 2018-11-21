@@ -532,7 +532,8 @@ class adminProcess extends CI_Model {
 		$this->db->where('emp_no' , $emp_no);
 		$this->db->where('approval_status' , 1);
 		$this->db->where('approval_dt >= ' , $from_date);
-		$this->db->where('approval_dt <= ' , $to_date);		
+		$this->db->where('approval_dt <= ' , $to_date);
+		$this->db->order_by("claim_cd","claim_dt");	
 		$query = $this->db->get('tm_claim');
 
 		$this->set_dt($from_date,$to_date);
@@ -543,6 +544,45 @@ class adminProcess extends CI_Model {
         	return $data;
     	}
 	}
+
+	public function claimTrans($from_date,$to_date,$emp_no){
+		$from_date = $from_date.' 00:00:01';
+		$to_date = $to_date.' 23:59:59';
+
+		$query = $this->db->query("select  a.emp_no emp_no,
+	   									   a.claim_cd claim_cd,
+										   a.claim_dt claim_dt,
+										   a.approval_dt approval_dt,
+										   a.project_type project_type,
+										   a.project_name project_name,
+										   a.purpose purpose,
+										   a.from_dt from_dt,
+										   a.to_dt to_dt,
+										   a.narration narration,
+									       b.sl_no sl_no, 
+									       b.claim_hd claim_hd,
+									       b.remarks remarks,
+									       b.amount amount
+									from   tm_claim a,
+									       tm_claim_trans b 
+									where  a.claim_dt = b.claim_dt
+									and    a.claim_cd = b.claim_cd
+									and    a.emp_no   = '$emp_no'
+									and    a.approval_status = 1
+									and    a.approval_dt >= '$from_date'
+									and    a.approval_dt <= '$to_date'
+									order by a.claim_cd,b.sl_no");
+
+		$this->set_dt($from_date,$to_date);
+		if($query->num_rows() > 0) {
+	       foreach ($query->result() as $row) {
+    	        $data[] = $row;
+        	}
+        	return $data;
+    	}
+	}
+
+
 
 	public function closingBalance($from_date,$to_date){
 		$sql = "SELECT t1.emp_no,t1.bl_dt,t2.balance_amt FROM (SELECT emp_no,max(balance_dt) bl_dt from tm_balance_amt where balance_dt BETWEEN '$from_date' AND '$to_date' GROUP BY emp_no ) t1, tm_balance_amt t2 WHERE t1.emp_no = t2.emp_no AND t1.bl_dt = t2.balance_dt";

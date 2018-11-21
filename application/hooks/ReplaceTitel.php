@@ -13,9 +13,9 @@ class ReplaceTitel {
       
       $titel = str_replace('SYNERGIC SOFTEK SOLUTIONS PVT. LTD.','POWERCRAFT ELECTRONICS PVT. LTD.', $titel);
        
-      $titel = str_replace('55 D, DESAPRAN SASHMAL ROAD','Plot No 47, Phase 3, Sector-D, 47, Miraj Rd, Shri Laxmi Co-op. Industrial Estate, Maharashtra 416118', $titel);
+      $titel = str_replace('55 D, DESAPRAN SASHMAL ROAD','Plot No 47, Phase 3, Sector-D, 47, Miraj Rd, Shri Laxmi Co-op. Industrial Estate, ', $titel);
        
-      $titel  = str_replace('KOLKATA-33', '', $titel);
+      $titel  = str_replace('KOLKATA-33', 'Maharashtra - 416118', $titel);
        
       // set the output
       echo $titel;
