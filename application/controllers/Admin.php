@@ -1302,12 +1302,19 @@ class Admin extends CI_Controller {
 	}
 
 	public function claim_dtl_ajax(){
+
 	    if($this->session->userdata('is_login')->user_type == 'AC') {
+
 	        $result['dtls'] = $this->AdminProcess->getAll('mm_employee');
+
 	    }
 	    else{
+
     	       $result['dtls'] = $this->AdminProcess->getEmpForManager();
+
+
 	    }    
+
 		$this->load->view('SU/claimAdminDtlModal', $result);
     }
 

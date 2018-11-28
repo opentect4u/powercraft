@@ -73,12 +73,12 @@
             <li class="emp_cl_balance">
               <a class="nav-link" data-toggle="modal" data-target="#empClBalns">Employee Balances</a>
             </li>
-            <li class="totalClaimDtl">
+            <!--<li class="totalClaimDtl">
               <a class="nav-link" data-toggle="modal" data-target="#totalClaimDtl">Total Claim Details</a>
             </li>
             <li class="distWiseExp">
               <a class="nav-link" data-toggle="modal" data-target="#dwiseExp">District Wise Expence</a>
-            </li>
+            </li>-->
             <li class="all_payment_dtls">
               <a class="nav-link" data-toggle="modal" data-target="#allpaymentDtl">Payment Details</a>
             </li>
@@ -289,12 +289,12 @@
                     <?php
                     }
                     ?>
-                    <li class="totalClaimDtl">
+                    <!--<li class="totalClaimDtl">
                       <a class="nav-link" data-toggle="modal" data-target="#totalClaimDtl">Total Claim Details</a>
-                    </li>
-                    <li class="distWiseExp">
+                    </li>-->
+                    <!--<li class="distWiseExp">
                       <a class="nav-link" data-toggle="modal" data-target="#dwiseExp">District Wise Expence</a>
-                    </li>
+                    </li>-->
                     <?php if ($this->session->userdata('loggedin')->user_type == 'A') {?>
                     <li class="all_payment_dtls">
                       <a class="nav-link" data-toggle="modal" data-target="#allpaymentDtl">Payment Details</a>

@@ -5,13 +5,16 @@
     <div class="form-group col-md-8">
         <label for="emp_name">Employee's Name</label>
         <div class="col-xs-4">
+
           <select class="form-control preferenceSelect" id="emp_no" name="emp_no" required style="width: 470px;">
+
           <option>Select</option>
           <?php
             if ($dtls) {
-                foreach ($dtls as $aldta) {?>
-                  <option value="<?php echo $aldta->emp_no;?>">
-                  <?php echo $aldta->emp_name;?></option>
+
+                foreach ($dtls as $aldta => $value) {?>
+                  <option value="<?php echo $value->emp_no;?>">
+                  <?php echo $value->emp_name;?></option>
           <?php
                   }
                 }

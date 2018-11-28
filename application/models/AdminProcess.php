@@ -705,16 +705,18 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
 		$this->db->where('emp_no', $this->session->userdata('is_login')->emp_no);
 		$query = $this->db->get('mm_manager');
 		
-		foreach ($query->result_array() as $row) { 
+		foreach ($query->result() as $row) { 
 			$this->db->select('emp_no'); 
 			$this->db->select('emp_name');
-			$this->db->where_in('emp_no', $row);
+			$this->db->where('emp_no', $row->manage_no);
 			$result = $this->db->get('mm_employee');
-			$name[] = $result->result();
+			$name[] = $result->row();
 		}
+		
 		return $name;
     }
 
+    
     public function getEmp($t_name,$id){
 		$this->db->select('*');
 		$this->db->where('claim_cd', $id);
@@ -778,20 +780,23 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
         
         foreach ($emp_list as $row1 => $val) {
              
-            $emp_no_list[]   =  $val[0]->emp_no;
+            $emp_no_list[]   =  $val->emp_no;
+
         }
-        
-        $emp_no_list   =   implode(",", $emp_no_list);
        
-		$sql = "SELECT emp_no, max(balance_dt) balance_dt FROM tm_balance_amt WHERE emp_no in ($emp_no_list) and balance_dt <= '$from_date' GROUP BY emp_no";
+        $this->db->select("emp_no, max(balance_dt) balance_dt");
+        $this->db->where_in('emp_no', $emp_no_list);
+        $this->db->where('balance_dt <=', $from_date);
+        $this->db->group_by('emp_no');
 
-		$query = $this->db->query($sql);
 
+		$query = $this->db->get('tm_balance_amt');
+
+		$data = $count = [];
 		foreach ($query->result() as $row) {
             $data[] = $row;
         }
         
-       
 		for ($i=0; $i < sizeof($data); $i++) { 
 			$this->db->select('emp_no');
 			$this->db->select('balance_amt');
@@ -806,7 +811,7 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
     public function closing_balance(){
 		$emp_no = $this->session->userdata('is_login')->emp_no;
 		$this->db->select("balance_amt FROM tm_balance_amt
-						 	 WHERE emp_no = '$emp_no' and
+						 	 WHERE emp_no = $emp_no and
 							 balance_dt = (select max(balance_dt)
 	                    	 from   tm_balance_amt)");
 		$query = $this->db->get();
