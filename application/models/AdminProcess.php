@@ -942,10 +942,10 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
 
 		$this->set_dt($from_date,$to_dt);
         
-        $sql = "SELECT * FROM tm_balance_amt WHERE emp_no = $emp_no AND balance_dt BETWEEN '$from_date' AND '$to_dt' ORDER BY balance_dt";
+        $sql = "SELECT * FROM tm_balance_amt WHERE emp_no = '$emp_no' AND balance_dt BETWEEN '$from_date' AND '$to_dt' ORDER BY balance_dt";
 		$query = $this->db->query($sql);
 		
-		if( $query -> num_rows() > 0) {
+		if( $query->num_rows() > 0) {
 	        foreach ($query->result() as $row) {
     	        $data[] = $row;
         	}
@@ -959,9 +959,9 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
 	public function opening_balance($from_date, $emp_no) {
 		$sql = "SELECT * FROM tm_balance_amt
 			WHERE emp_no = '$emp_no' and
-					balance_dt = (SELECT min(balance_dt)
+					balance_dt = (SELECT max(balance_dt)
                     from   tm_balance_amt
-                    WHERE  balance_dt <= '$from_date')";
+                    WHERE  balance_dt < '$from_date')";
 		                    
 		$query = $this->db->query($sql);
 		

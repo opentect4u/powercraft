@@ -41,7 +41,15 @@
     		<h5 style="text-align: center;">Personal Ledger between <?php echo date('d/m/Y', strtotime($date->from_date)).' to '.date('d/m/Y', strtotime($date->to_date));?></h5>
     		<hr>
     		<?php
-        if ($alldata && $opening_balance && $emp_dtls && $date) {
+
+        if(is_null($opening_balance)){
+                $opening_balance = 0;
+        }else{
+                $opening_balance = $opening_balance;
+        }
+
+
+        if ($alldata && $emp_dtls && $date) {
     			foreach ($emp_dtls as $alldta) {
     		?>
     		<div style="margin-left: 20px;">
