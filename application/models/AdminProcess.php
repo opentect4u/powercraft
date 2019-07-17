@@ -762,10 +762,17 @@ public function getDetailsbyEmpNo($t_name,$emp_no){
 
     public function maxCode($t_name, $var){
     	$this->db->select_max($var);
-	$this->db->where('year(trans_dt)',date("Y"));
+		$this->db->where('year(trans_dt)',date("Y"));
     	$result = $this->db->get($t_name);
     	return $result->row();
     	
+	}
+	
+	public function maxTransCode($t_name, $var){
+        $this->db->select_max($var);
+        $result = $this->db->get($t_name);
+        return $result->row();
+        
     }
 
     public function editNameProcess($name){
